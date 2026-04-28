@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invicity — Your People. Every City.</title>
+<title>Invicity — Your invite to every city, and everyone worth knowing in it.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --cream: #F5F0E8;
-    --warm-white: #FAF7F2;
-    --terracotta: #C4623A;
-    --terracotta-light: #D4795A;
-    --terracotta-dark: #A84E2C;
-    --navy: #1C2B3A;
-    --navy-mid: #2D3F52;
-    --sand: #E8DDD0;
-    --sand-dark: #CFC0AE;
-    --muted: #7A6E66;
+    --cream: #F5F2ED;
+    --warm-white: #FAF8F5;
+    --terracotta: #B8965A;
+    --terracotta-light: #CBA96E;
+    --terracotta-dark: #9A7A42;
+    --navy: #080B10;
+    --navy-mid: #111620;
+    --sand: #E8E2D8;
+    --sand-dark: #CEC5B5;
+    --muted: #7A7268;
     --gold: #B8965A;
   }
 
@@ -1085,13 +1085,105 @@
   }
   .match-step-dot.active { color: var(--terracotta-light); }
 
+  /* ── Past Events Gallery ── */
+  .events-gallery { padding: 120px 60px; background: var(--cream); }
+  .gallery-header { text-align: center; max-width: 600px; margin: 0 auto 72px; }
+  .gallery-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 3.5vw, 56px); font-weight: 300; line-height: 1.1; color: var(--navy); margin-bottom: 16px; }
+  .gallery-headline em { font-style: italic; color: var(--terracotta); }
+  .gallery-sub { font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 1200px; margin: 0 auto; }
+  .gallery-item { background: var(--navy); position: relative; overflow: hidden; cursor: none; aspect-ratio: 4/3; }
+  .gallery-item.wide { grid-column: span 2; aspect-ratio: 8/4; }
+  .gallery-item-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; background: linear-gradient(to top, rgba(28,43,58,0.9) 0%, transparent 100%); z-index: 2; }
+  .gallery-item-event { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--cream); margin-bottom: 4px; }
+  .gallery-item-date { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245,240,232,0.5); }
+  .gallery-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(196,98,58,0.15) 0%, rgba(28,43,58,1) 100%); }
+  .gallery-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── User Stories ── */
+  .stories { background: var(--warm-white); padding: 120px 60px; }
+  .stories-header { text-align: center; max-width: 560px; margin: 0 auto 80px; }
+  .stories-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 3.5vw, 56px); font-weight: 300; color: var(--navy); line-height: 1.1; }
+  .stories-headline em { font-style: italic; color: var(--terracotta); }
+  .story-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; margin: 0 auto 80px; padding: 60px; background: var(--cream); border: 1px solid var(--sand); position: relative; }
+  .story-tag { position: absolute; top: 32px; right: 32px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta); border: 1px solid rgba(196,98,58,0.3); padding: 5px 12px; }
+  .story-origin { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .story-origin::before { content: ''; display: block; width: 20px; height: 1px; background: var(--terracotta); }
+  .story-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3vw, 48px); font-weight: 300; color: var(--navy); line-height: 1.15; margin-bottom: 24px; }
+  .story-names em { font-style: italic; color: var(--terracotta); }
+  .story-body { font-size: 15px; line-height: 1.8; color: var(--muted); font-weight: 300; margin-bottom: 18px; }
+  .story-outcomes { display: flex; gap: 24px; margin-top: 8px; }
+  .story-outcome { display: flex; align-items: flex-start; gap: 10px; flex: 1; }
+  .outcome-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+  .outcome-text { font-size: 13px; line-height: 1.6; color: var(--navy); font-weight: 300; }
+  .story-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .story-photo { background: var(--navy); position: relative; overflow: hidden; }
+  .story-photo.tall { grid-column: span 2; aspect-ratio: 3/2; }
+  .story-photo.sq { aspect-ratio: 1; }
+  .story-photo-gradient { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(196,98,58,0.2), rgba(28,43,58,0.85)); display: flex; align-items: center; justify-content: center; }
+  .story-photo-label { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 300; font-style: italic; color: rgba(245,240,232,0.4); }
+  .story-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── Vetting / Exclusivity ── */
+  .vetting { background: var(--navy); padding: 100px 60px; }
+  .vetting-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .vetting-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 3vw, 52px); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 20px; }
+  .vetting-headline em { font-style: italic; color: var(--terracotta); }
+  .vetting-body { font-size: 15px; line-height: 1.8; color: rgba(245,240,232,0.55); font-weight: 300; margin-top: 16px; }
+  .vetting-criteria { display: flex; flex-direction: column; gap: 2px; }
+  .vetting-item { padding: 24px 32px; background: rgba(245,240,232,0.03); border: 1px solid rgba(245,240,232,0.07); display: flex; align-items: center; gap: 20px; transition: background 0.3s; }
+  .vetting-item:hover { background: rgba(245,240,232,0.06); }
+  .vetting-number { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--terracotta); opacity: 0.6; flex-shrink: 0; min-width: 36px; }
+  .vetting-text h4 { font-size: 14px; font-weight: 400; color: var(--cream); margin-bottom: 4px; letter-spacing: 0.04em; }
+  .vetting-text p { font-size: 12px; color: rgba(245,240,232,0.4); line-height: 1.5; }
+
+  /* ── Upcoming Events (Luma) ── */
+  .upcoming-events { padding: 120px 60px; background: var(--warm-white); }
+  .upcoming-header { display: flex; align-items: flex-end; justify-content: space-between; max-width: 1200px; margin: 0 auto 60px; }
+  .upcoming-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 3.5vw, 58px); font-weight: 300; color: var(--navy); line-height: 1.1; }
+  .upcoming-headline em { font-style: italic; color: var(--terracotta); }
+  .luma-embed-wrapper { max-width: 1200px; margin: 0 auto; border: 1px solid var(--sand); overflow: hidden; background: var(--warm-white); }
+
+  /* ── Founder Section ── */
+  .founder { background: var(--navy); padding: 120px 60px; }
+  .founder-inner { max-width: 1200px; margin: 0 auto; }
+  .founder-top { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; margin-bottom: 80px; }
+  .founder-photo-main { aspect-ratio: 3/4; background: var(--navy-mid); position: relative; overflow: hidden; }
+  .founder-photo-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 40% 30%, rgba(196,98,58,0.25) 0%, transparent 60%); }
+  .founder-photo-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .founder-photo-placeholder-text { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: rgba(245,240,232,0.2); }
+  .founder-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .founder-content { padding-top: 8px; }
+  .founder-intro-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 3vw, 52px); font-weight: 300; color: var(--cream); line-height: 1.12; margin-bottom: 32px; }
+  .founder-intro-headline em { font-style: italic; color: var(--terracotta); }
+  .founder-body { font-size: 15px; line-height: 1.85; color: rgba(245,240,232,0.6); font-weight: 300; margin-bottom: 18px; }
+  .founder-body strong { color: rgba(245,240,232,0.85); font-weight: 400; }
+  .founder-signature { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; font-style: italic; color: var(--cream); margin-top: 36px; }
+  .founder-role { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,232,0.3); margin-top: 6px; }
+  .founder-travel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .founder-travel-photo { aspect-ratio: 1; background: var(--navy-mid); position: relative; overflow: hidden; }
+  .founder-travel-photo-overlay { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(196,98,58,0.15) 0%, rgba(28,43,58,0.75) 100%); display: flex; align-items: center; justify-content: center; }
+  .travel-photo-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-style: italic; color: rgba(245,240,232,0.3); }
+  .travel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── Waitlist Section ── */
+  .waitlist { padding: 120px 60px; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+  .waitlist-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 4vw, 72px); font-weight: 300; line-height: 1.08; color: var(--navy); }
+  .waitlist-headline em { font-style: italic; color: var(--terracotta); }
+  .waitlist-body { font-size: 16px; line-height: 1.75; color: var(--muted); font-weight: 300; margin: 28px 0 0; }
+  .waitlist-badge { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+  .waitlist-badge-item { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); border: 1px solid rgba(196,98,58,0.35); padding: 7px 14px; }
+  .waitlist-form-wrap { background: var(--warm-white); border: 1px solid var(--sand); padding: 48px; }
+  .waitlist-form-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: block; }
+  .waitlist-form-headline { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--navy); margin-bottom: 32px; }
+
   @media (max-width: 900px) {
     nav { padding: 24px 28px; }
     nav ul { display: none; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 100px 28px 60px; }
     .hero-right { height: 420px; }
-    .about, .apply { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
+    .about { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
     .pillars { padding: 80px 28px; }
     .pillars-grid { grid-template-columns: 1fr; gap: 2px; }
     .membership { padding: 80px 28px; }
@@ -1104,11 +1196,21 @@
     footer { padding: 60px 28px 32px; }
     .footer-top { flex-direction: column; gap: 40px; }
     .footer-links { gap: 32px; }
-    .form-row { grid-template-columns: 1fr; }
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none; }
     #matchingApp { margin: 0 -28px; }
     #signature { padding: 80px 28px; }
+    .events-gallery, .stories, .vetting, .upcoming-events, .founder { padding: 80px 28px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item.wide { grid-column: span 2; }
+    .story-feature { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+    .story-tag { position: static; display: inline-block; margin-bottom: 16px; }
+    .vetting-inner { grid-template-columns: 1fr; gap: 48px; }
+    .founder-top { grid-template-columns: 1fr; }
+    .founder-travel-grid { grid-template-columns: repeat(2, 1fr); }
+    .waitlist { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
+    .waitlist-form-wrap { padding: 32px 24px; }
+    .upcoming-header { flex-direction: column; gap: 16px; align-items: flex-start; }
   }
 </style>
 </head>
@@ -1121,28 +1223,28 @@
 <nav>
   <a href="#" class="logo">Invi<span>city</span></a>
   <ul>
-    <li><a href="#about">About</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#events">Events</a></li>
     <li><a href="#membership">Membership</a></li>
-    <li><a href="#signature">Signature</a></li>
     <li><a href="#cities">Cities</a></li>
-    <li><a href="#apply">Apply</a></li>
+    <li><a href="#waitlist">Waitlist</a></li>
   </ul>
-  <a href="#apply" class="nav-cta">Apply for passport</a>
+  <a href="#waitlist" class="nav-cta">Join the waitlist</a>
 </nav>
 
 <!-- Hero -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">The Ultimate Global Membership Community for Ambitious Young Professionals</div>
+    <div class="hero-eyebrow">Global Membership Community</div>
     <h1 class="hero-headline">
-      Your people.<br>
-      <em>Every city.</em>
+      Your invite to every city,<br>
+      <em>and everyone worth knowing in it.</em>
     </h1>
     <p class="hero-sub">
-      Invicity is a curated global community for ambitious professionals who move through the world. Wherever you land next, your people are already there.
+      A highly vetted membership community for ambitious twenty- and thirty-somethings. We host intimate gatherings — Invicity Nights — in cities around the world, and connect members so you always have someone to call when you land somewhere new.
     </p>
     <div class="hero-actions">
-      <a href="#apply" class="btn-primary"><span>Apply for membership</span></a>
+      <a href="#waitlist" class="btn-primary"><span>Join the waitlist</span></a>
       <a href="#about" class="btn-ghost">
         Learn more
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1174,7 +1276,7 @@
       <div class="membership-card">
         <div class="card-inner">
           <div class="card-logo">Invicity</div>
-          <div class="card-name">Stephanie M.</div>
+          <div class="card-name">Stephanie L.</div>
           <div class="card-title">Consultant · Founder</div>
           <div class="card-cities">
             <div class="card-city-dot"></div>
@@ -1253,21 +1355,83 @@
   </div>
   <div class="about-right reveal">
     <div class="about-visual">
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0.06">
-        <svg viewBox="0 0 200 200" width="80%" fill="none">
-          <circle cx="100" cy="100" r="80" stroke="#F5F0E8" stroke-width="0.5"/>
-          <circle cx="100" cy="100" r="50" stroke="#F5F0E8" stroke-width="0.5"/>
-          <circle cx="100" cy="100" r="20" stroke="#F5F0E8" stroke-width="0.5"/>
-          <line x1="20" y1="100" x2="180" y2="100" stroke="#F5F0E8" stroke-width="0.5"/>
-          <line x1="100" y1="20" x2="100" y2="180" stroke="#F5F0E8" stroke-width="0.5"/>
-        </svg>
-      </div>
+      <img src="photos/wine-night-invicity.jpg" alt="Invicity Wine Night London" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.75;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(8,11,16,0.85) 0%, rgba(8,11,16,0.1) 60%);"></div>
       <div class="about-visual-quote">
-        <blockquote>"The community I needed every time I landed somewhere new."</blockquote>
-        <cite>Invicity member, London inaugural night</cite>
+        <blockquote>"A city is only as good as the people you know in it. Invicity changed that for me."</blockquote>
+        <cite>Holly, Invicity member · London</cite>
       </div>
     </div>
     <div class="about-accent"></div>
+  </div>
+</section>
+
+<!-- Founder Introduction -->
+<section class="founder" id="founder">
+  <div class="founder-inner">
+    <div class="reveal" style="margin-bottom:60px;">
+      <div class="section-eyebrow" style="color:rgba(245,240,232,0.4)">The founder</div>
+    </div>
+    <div class="founder-top">
+      <div class="founder-photo-main reveal">
+        <img class="founder-img" src="photos/stephanie-profile.jpg" alt="Stephanie L., Founder of Invicity">
+        <div class="founder-photo-bg"></div>
+      </div>
+      <div class="founder-content reveal">
+        <h2 class="founder-intro-headline">Hi, I'm Stephanie —<br><em>founder of Invicity.</em></h2>
+        <p class="founder-body">I spent over three years in management consulting in the US, advising Fortune 500 companies on how to build better systems. Meanwhile, I was quietly building one of my own — a life stitched together across cities.</p>
+        <p class="founder-body"><strong>Here's the thing about your twenties: your people end up everywhere.</strong> After college, my best friends scattered across the world — San Francisco, New York, Stockholm, Barcelona, Hong Kong, and more. Suddenly my favorite hobby was going to the airport. I'd fly out on a Friday just to crash someone's Monday trivia night, be a plus-one at a party where I knew no one, or sign up for a dance class and completely humiliate myself. Worth it every time.</p>
+        <p class="founder-body">But here's what I didn't expect: the best nights weren't the Eiffel Tower or the must-see museum. They were the random Tuesdays when you start dancing with strangers and somehow end up at three more parties by 2am.</p>
+        <p class="founder-body">I've moved countries twice — from home to the US for college, then from the US to London — both times knowing no one. What I've learned is that <strong>a city is only as good as the people you know in it.</strong></p>
+        <p class="founder-body">That's why I left consulting to build Invicity. We've already hosted Invicity Nights in London, with members flying in from other countries just to be there. And this is only the beginning.</p>
+        <p class="founder-body" style="font-style:italic;">If your group chat is already spread across three time zones, you're one of us.</p>
+        <div class="founder-signature">Stephanie</div>
+        <div class="founder-role">Founder, Invicity · London</div>
+      </div>
+    </div>
+
+    <!-- Travel photo grid — 9 photos, 3×3 -->
+    <div class="reveal" style="margin-bottom:24px;">
+      <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,240,232,0.25);margin-bottom:16px;">Life in cities</div>
+    </div>
+    <div class="founder-travel-grid reveal" style="grid-template-columns:repeat(3,1fr);">
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Paris.jpg" alt="Paris">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Paris</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/New York City.jpg" alt="New York">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">New York</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Rome.jpg" alt="Rome">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Rome</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Abu Dhabi.jpg" alt="Abu Dhabi">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Abu Dhabi</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Phuket Thailand.jpg" alt="Phuket">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Phuket</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Jeju Island.jpg" alt="Jeju Island">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Jeju Island</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Honolulu.jpg" alt="Honolulu">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Honolulu</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/North Shore HI.jpg" alt="North Shore Hawaii">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">North Shore</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Napa CA.jpg" alt="Napa">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Napa</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1299,18 +1463,166 @@
   </div>
 </section>
 
+<!-- Past Events Gallery -->
+<section class="events-gallery" id="events">
+  <div class="gallery-header reveal">
+    <div class="section-eyebrow" style="justify-content:center">Past events</div>
+    <h2 class="gallery-headline">Invicity <em>Nights</em></h2>
+    <p class="gallery-sub">Intimate evenings designed for real connection. This is what an Invicity Night looks like.</p>
+  </div>
+  <!-- Wine Night -->
+  <div class="reveal" style="max-width:1200px;margin:0 auto 8px;">
+    <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-left:2px;">Invicity Wine Night · London</div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <img class="gallery-img" src="photos/wine-night-invicity.jpg" alt="Invicity Wine Night London">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Invicity Wine Night — London</div>
+          <div class="gallery-item-date">2026 · London, UK</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/wine-night-stephanie.jpg" alt="Stephanie at Wine Night">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Wine Night</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/wine-night-1.jpg" alt="Invicity Wine Night">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Wine Night</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/wine-night-2.jpg" alt="Invicity Wine Night">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Wine Night</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Picnic -->
+  <div class="reveal" style="max-width:1200px;margin:0 auto 8px;">
+    <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-left:2px;">Invicity Picnic · London</div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <img class="gallery-img" src="photos/picnic-3.jpg" alt="Invicity Picnic">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Invicity Picnic — London</div>
+          <div class="gallery-item-date">2026 · London, UK</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/picnic-1.jpg" alt="Invicity Picnic">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Picnic</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/picnic-4.jpg" alt="Invicity Picnic">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Picnic</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/picnic-2.jpg" alt="Invicity Picnic">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Picnic</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/picnic-5.jpg" alt="Invicity Picnic">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Picnic</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pub Trip -->
+  <div class="reveal" style="max-width:1200px;margin:0 auto;">
+    <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-left:2px;">Invicity Pub Trip · London</div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <img class="gallery-img" src="photos/pub-trip-1.jpg" alt="Invicity Pub Trip">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Invicity Pub Trip — London</div>
+          <div class="gallery-item-date">2026 · London, UK</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="reveal" style="text-align:center;margin-top:32px;font-size:13px;color:var(--muted);">Follow <a href="https://instagram.com/invicitynetwork" target="_blank" style="color:var(--terracotta);text-decoration:none;">@invicitynetwork</a> for more.</p>
+</section>
+
+<!-- User Stories -->
+<section class="stories">
+  <div class="stories-header reveal">
+    <div class="section-eyebrow" style="justify-content:center">From the community</div>
+    <h2 class="stories-headline">Real <em>connections.</em><br>Real stories.</h2>
+  </div>
+
+  <div class="story-feature reveal">
+    <div class="story-tag">Member story</div>
+    <div>
+      <div class="story-origin">Met at Invicity Wine Night · London</div>
+      <h3 class="story-names">Holly <em>&amp;</em> Stella</h3>
+      <p class="story-body">Holly and Stella met at an Invicity Wine Night in London — two strangers who quickly became close friends. Within months, they were on a plane to Scotland together for a week-long trip.</p>
+      <p class="story-body">The friendship didn't stop there. Holly's family runs an Asian grocery store, and Stella sells her own cosmetics line. Today, Stella's products are stocked on Holly's family's shelves — a real business partnership that started with a single glass of wine.</p>
+      <div class="story-outcomes">
+        <div class="story-outcome">
+          <div class="outcome-icon">✈</div>
+          <div class="outcome-text">Flew to Scotland together within months of meeting</div>
+        </div>
+        <div class="story-outcome">
+          <div class="outcome-icon">🤝</div>
+          <div class="outcome-text">Built a business partnership — Stella's cosmetics now in Holly's family store</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-visual">
+      <div class="story-photo tall">
+        <img class="story-img" src="photos/holly-stella-1.jpg" alt="Holly and Stella">
+        <div class="story-photo-gradient" style="opacity:0.3;"></div>
+      </div>
+      <div class="story-photo sq">
+        <img class="story-img" src="photos/wine-night-3.jpg" alt="Invicity Wine Night">
+        <div class="story-photo-gradient" style="opacity:0.3;"></div>
+      </div>
+      <div class="story-photo sq">
+        <img class="story-img" src="photos/holly-stella-2.jpg" alt="Stella">
+        <div class="story-photo-gradient" style="opacity:0.3;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="max-width:1200px;margin:0 auto;text-align:center;padding:48px 20px;border-top:1px solid var(--sand);">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2vw,34px);font-weight:300;font-style:italic;color:var(--navy);max-width:660px;margin:0 auto 16px;">"A city is only as good as the people you know in it."</p>
+    <p style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);">— Stephanie, Founder of Invicity</p>
+  </div>
+</section>
+
 <!-- Membership -->
 <section class="membership" id="membership">
   <div class="membership-header reveal">
-    <h2 class="membership-headline">Choose how you<br><em>belong</em></h2>
-    <p class="membership-sub">Applications are reviewed individually. We accept members who will add to the community, not just join it.</p>
+    <h2 class="membership-headline">Two ways to<br><em>belong</em></h2>
+    <p class="membership-sub">We're opening doors carefully. Join the waitlist now — pricing will be announced ahead of launch.</p>
   </div>
   <div class="membership-tiers reveal">
     <div class="tier tier-standard">
       <div class="tier-badge">Community</div>
       <div class="tier-name">Explorer</div>
       <div class="tier-price">
-        <div class="tier-amount">Free</div>
+        <div class="tier-amount" style="font-size:36px;">Coming soon</div>
       </div>
       <ul class="tier-features">
         <li><span class="feature-check">✓</span> Access to Invicity events</li>
@@ -1318,16 +1630,15 @@
         <li><span class="feature-check">✓</span> One city chapter access</li>
         <li><span class="feature-check">✓</span> Member directory (limited)</li>
       </ul>
-      <a href="#apply" class="btn-tier">Join the waitlist</a>
+      <a href="#waitlist" class="btn-tier">Join the waitlist</a>
     </div>
     <div class="tier tier-passport">
-      <div class="tier-badge">✦ Most popular</div>
+      <div class="tier-badge">✦ Full access</div>
       <div class="tier-name" style="color:var(--cream)">Passport</div>
       <div class="tier-price">
-        <div class="tier-amount">$29</div>
-        <div class="tier-period">/ month</div>
+        <div class="tier-amount" style="font-size:36px;color:var(--cream)">Coming soon</div>
       </div>
-      <div style="font-size:12px;color:rgba(245,240,232,0.4);margin-bottom:32px;letter-spacing:0.04em;">or $299 / year — save 14%</div>
+      <div style="font-size:12px;color:rgba(245,240,232,0.4);margin-bottom:32px;letter-spacing:0.04em;">Early waitlist members get founding member pricing</div>
       <ul class="tier-features">
         <li><span class="feature-check">✓</span> All global city chapters</li>
         <li><span class="feature-check">✓</span> Priority event access + discounts</li>
@@ -1336,7 +1647,49 @@
         <li><span class="feature-check">✓</span> Invicity city guides</li>
         <li><span class="feature-check">✓</span> Ambassador introductions</li>
       </ul>
-      <a href="#apply" class="btn-tier">Apply for passport</a>
+      <a href="#waitlist" class="btn-tier">Join the waitlist</a>
+    </div>
+  </div>
+</section>
+
+<!-- Vetting / Exclusivity -->
+<section class="vetting">
+  <div class="vetting-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Why we're different</div>
+      <h2 class="vetting-headline">We curate the room<br>so you don't have to<br><em>filter the people.</em></h2>
+      <p class="vetting-body">Invicity isn't a platform you sign up to and forget. Every member is reviewed personally. We keep our gatherings intimate by design — the quality of the room is the point.</p>
+      <p class="vetting-body">When you walk into an Invicity Night, everyone there has been vetted. That's what makes the connections real.</p>
+    </div>
+    <div class="vetting-criteria reveal">
+      <div class="vetting-item">
+        <div class="vetting-number">01</div>
+        <div class="vetting-text">
+          <h4>Application required</h4>
+          <p>Every prospective member completes a personal application — no auto-approvals.</p>
+        </div>
+      </div>
+      <div class="vetting-item">
+        <div class="vetting-number">02</div>
+        <div class="vetting-text">
+          <h4>Reviewed personally</h4>
+          <p>Stephanie and the Invicity team reviews every application by hand.</p>
+        </div>
+      </div>
+      <div class="vetting-item">
+        <div class="vetting-number">03</div>
+        <div class="vetting-text">
+          <h4>Limited by city</h4>
+          <p>Chapters stay small and intentional. We don't scale quality out of a room.</p>
+        </div>
+      </div>
+      <div class="vetting-item">
+        <div class="vetting-number">04</div>
+        <div class="vetting-text">
+          <h4>Referrals welcomed</h4>
+          <p>The fastest path in is through someone who's already part of it.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1589,8 +1942,83 @@
   </div>
 </section>
 
-<!-- Apply -->
-<section class="apply" id="apply">
+<!-- Upcoming Events (Luma) -->
+<section class="upcoming-events" id="upcoming">
+  <div class="upcoming-header reveal">
+    <div>
+      <div class="section-eyebrow">What's next</div>
+      <h2 class="upcoming-headline">Upcoming<br><em>Invicity Nights</em></h2>
+    </div>
+    <a href="https://lu.ma/calendar/cal-QVlAAKcLluR8cOy" target="_blank" class="btn-ghost" style="color:var(--terracotta);border-bottom:1px solid rgba(196,98,58,0.4);padding-bottom:2px;text-decoration:none;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">
+      View all on Luma →
+    </a>
+  </div>
+  <!-- Luma calendar embed -->
+  <div class="luma-embed-wrapper reveal">
+    <iframe
+      src="https://lu.ma/embed/calendar/cal-QVlAAKcLluR8cOy/events?lt=light"
+      width="100%"
+      height="480"
+      frameborder="0"
+      style="border:none;display:block;"
+      allowfullscreen
+      aria-hidden="false"
+      tabindex="0"
+    ></iframe>
+  </div>
+
+  <!-- Fallback upcoming event cards (shown if Luma embed is unavailable) -->
+  <div class="reveal" style="max-width:1200px;margin:32px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+    <div style="background:var(--cream);border:1px solid var(--sand);padding:36px 32px;position:relative;">
+      <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--terracotta);border:1px solid rgba(184,150,90,0.3);padding:4px 10px;display:inline-block;margin-bottom:20px;">London · Upcoming</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--navy);margin-bottom:8px;">Invicity Night</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.6;">An intimate evening for members and selected guests in London. Details sent to waitlist first.</div>
+      <a href="https://lu.ma/calendar/cal-QVlAAKcLluR8cOy" target="_blank" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta);text-decoration:none;">View on Luma →</a>
+    </div>
+    <div style="background:var(--cream);border:1px solid var(--sand);padding:36px 32px;">
+      <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);border:1px solid var(--sand-dark);padding:4px 10px;display:inline-block;margin-bottom:20px;">More cities · Coming soon</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--navy);margin-bottom:8px;">Expanding in 2026</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.6;">New York, San Francisco, Hong Kong and more. Waitlist members get first access when new cities launch.</div>
+      <a href="#waitlist" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta);text-decoration:none;">Join the waitlist →</a>
+    </div>
+    <div style="background:var(--navy);padding:36px 32px;">
+      <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--terracotta-light);border:1px solid rgba(184,150,90,0.3);padding:4px 10px;display:inline-block;margin-bottom:20px;">Members only</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--cream);margin-bottom:8px;">Get notified first</div>
+      <div style="font-size:12px;color:rgba(245,240,232,0.5);margin-bottom:20px;line-height:1.6;">All events are announced to waitlist members before public release. Spots are limited by design.</div>
+      <a href="#waitlist" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta-light);text-decoration:none;">Join the waitlist →</a>
+    </div>
+  </div>
+  <p class="reveal" style="text-align:center;margin-top:24px;font-size:12px;color:var(--sand-dark);">View all events on <a href="https://lu.ma/calendar/cal-QVlAAKcLluR8cOy" target="_blank" style="color:var(--terracotta);text-decoration:none;">lu.ma</a></p>
+</section>
+
+<!-- Waitlist -->
+<section id="waitlist" style="background:var(--cream);">
+<div class="waitlist">
+  <div class="apply-left reveal">
+    <div class="section-eyebrow">Join Invicity</div>
+    <h2 class="waitlist-headline">Secure your<br><em>spot</em></h2>
+    <p class="waitlist-body">We're opening doors city by city, carefully. Tell us who you are and where you're headed — we'll be in touch when your chapter opens.</p>
+    <div class="waitlist-badge">
+      <div class="waitlist-badge-item">Application reviewed personally</div>
+      <div class="waitlist-badge-item">Limited spots per city</div>
+      <div class="waitlist-badge-item">Early access perks</div>
+    </div>
+  </div>
+  <div class="waitlist-form-wrap reveal" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-height:320px;">
+    <span class="waitlist-form-label">Waitlist application</span>
+    <p class="waitlist-form-headline">Ready to find<br>your people?</p>
+    <p style="font-size:14px;line-height:1.75;color:var(--muted);font-weight:300;margin-bottom:40px;">Takes 2 minutes. We review every application personally and will be in touch shortly.</p>
+    <a href="https://tally.so/r/q4RLNk" target="_blank" class="btn-primary" style="display:inline-block;">
+      <span>Apply now →</span>
+    </a>
+    <p style="font-size:11px;color:var(--sand-dark);margin-top:20px;letter-spacing:0.04em;">Opens in a new tab · Takes 2 minutes</p>
+  </div>
+</div>
+</section>
+
+<!-- (legacy apply section — hidden anchor for any stale links) -->
+<span id="apply" style="display:none"></span>
+<section style="display:none">
   <div class="apply-left reveal">
     <div class="section-eyebrow">Membership application</div>
     <h2 class="apply-headline">Join the<br><em>inner circle</em></h2>
@@ -1761,7 +2189,7 @@
   <div class="footer-top">
     <div>
       <div class="footer-logo">Invi<span>city</span></div>
-      <div class="footer-tagline">Your people. Every city.</div>
+      <div class="footer-tagline">Your invite to every city, and everyone worth knowing in it.</div>
     </div>
     <div class="footer-links">
       <div class="footer-col">
@@ -1770,7 +2198,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#cities">Cities</a></li>
           <li><a href="#membership">Membership</a></li>
-          <li><a href="#apply">Apply</a></li>
+          <li><a href="#waitlist">Join Waitlist</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1778,16 +2206,18 @@
         <ul>
           <li><a href="https://instagram.com/invicitynetwork" target="_blank">Instagram</a></li>
           <li><a href="https://tiktok.com/@invicitynetwork" target="_blank">TikTok</a></li>
+          <li><a href="https://linkedin.com/company/invicity" target="_blank">LinkedIn</a></li>
           <li><a href="mailto:hello@invicity.com">hello@invicity.com</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Invicity. All rights reserved.</div>
+    <div class="footer-copy">© 2026 Invicity. All rights reserved.</div>
     <div class="footer-social">
       <a href="https://instagram.com/invicitynetwork" target="_blank">Instagram</a>
       <a href="https://tiktok.com/@invicitynetwork" target="_blank">TikTok</a>
+      <a href="https://linkedin.com/company/invicity" target="_blank">LinkedIn</a>
     </div>
   </div>
 </footer>
