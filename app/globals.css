@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   INVICITY — Design System
+   Editorial. Private membership. Not SaaS.
+───────────────────────────────────────────── */
+
+@theme inline {
+  /* Palette — cream, ink, one gold accent. Nothing else. */
+  --color-cream:      #F5F2ED;
+  --color-cream-dark: #EDE8E0;
+  --color-ink:        #1A1A1A;
+  --color-ink-mid:    #3D3A35;
+  --color-muted:      #7A7268;
+  --color-gold:       #9A7A42;
+  --color-gold-light: #B8965A;
+  --color-sand:       #E2DDD6;
+  --color-black:      #0D0D0D;
+
+  --color-background: #F5F2ED;
+  --color-foreground: #1A1A1A;
+
+  /* Fonts */
+  --font-serif: var(--font-cormorant);
+  --font-sans:  var(--font-dm-sans);
+}
+
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: #F5F2ED;
+  color: #1A1A1A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #F5F2ED;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── Images — no rounded corners, ever ── */
+img { border-radius: 0 !important; display: block; }
+
+/* ── Hairlines — structural, not decorative ── */
+.rule         { border-top: 1px solid #1A1A1A; }
+.rule-muted   { border-top: 1px solid rgba(26,26,26,0.12); }
+.rule-light   { border-top: 1px solid rgba(245,242,237,0.18); }
+
+/* ── Label — DM Sans, uppercase, tracked ── */
+.label {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7A7268;
+}
+
+.label-gold {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9A7A42;
+}
+
+/* ── Transitions — slow, understated ── */
+a { transition: opacity 400ms ease-out, color 400ms ease-out; }
+button { transition: opacity 400ms ease-out, background 400ms ease-out; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #F5F2ED; }
+::-webkit-scrollbar-thumb { background: #CEC5B5; }
