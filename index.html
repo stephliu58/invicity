@@ -1,0 +1,2371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invicity — Your invite to every city, and everyone worth knowing in it.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F2ED;
+    --warm-white: #FAF8F5;
+    --terracotta: #B8965A;
+    --terracotta-light: #CBA96E;
+    --terracotta-dark: #9A7A42;
+    --navy: #080B10;
+    --navy-mid: #111620;
+    --sand: #E8E2D8;
+    --sand-dark: #CEC5B5;
+    --muted: #7A7268;
+    --gold: #B8965A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--terracotta);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid var(--terracotta);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.25s ease;
+    opacity: 0.5;
+  }
+  a:hover ~ .cursor, button:hover ~ .cursor { transform: translate(-50%,-50%) scale(2); }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    mix-blend-mode: normal;
+  }
+  nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.95) 0%, rgba(245,240,232,0) 100%);
+    pointer-events: none;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+    position: relative;
+  }
+  .logo span { color: var(--terracotta); }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    position: relative;
+  }
+  nav ul a {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--navy); }
+  .nav-cta {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    text-decoration: none;
+    border-bottom: 1px solid var(--terracotta);
+    padding-bottom: 2px;
+    position: relative;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.7; }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--terracotta);
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 5.5vw, 88px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 400px;
+    margin-bottom: 52px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.6s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    border: none;
+    cursor: none;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.25s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--terracotta);
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+  }
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-primary:hover { transform: translateY(-1px); }
+
+  .btn-ghost {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s ease;
+  }
+  .btn-ghost:hover { gap: 14px; }
+  .btn-ghost svg { width: 16px; height: 16px; }
+
+  /* Hero right — visual panel */
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image-panel {
+    position: absolute;
+    inset: 0;
+    background: var(--navy);
+    overflow: hidden;
+  }
+  .hero-image-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 40%, rgba(196,98,58,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 70%, rgba(28,43,58,0.8) 0%, transparent 50%);
+    z-index: 1;
+  }
+  /* Abstract city grid pattern */
+  .city-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.08;
+  }
+  .city-grid line { stroke: var(--cream); stroke-width: 0.5; }
+
+  .hero-city-list {
+    position: absolute;
+    bottom: 60px;
+    left: 48px;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+  .hero-city-list p {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    margin-bottom: 12px;
+  }
+  .city-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 320px;
+  }
+  .city-tag {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(245,240,232,0.7);
+    border: 1px solid rgba(245,240,232,0.15);
+    padding: 6px 14px;
+    transition: all 0.25s;
+  }
+  .city-tag:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta-light);
+  }
+  .city-tag.active {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    color: var(--cream);
+  }
+
+  .hero-stat {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    z-index: 2;
+    text-align: right;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+  .hero-stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+  }
+
+  /* Floating membership card */
+  .membership-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    z-index: 3;
+    opacity: 0;
+    animation: cardReveal 1.2s ease 0.8s forwards;
+  }
+  .card-inner {
+    background: linear-gradient(135deg, rgba(245,240,232,0.12) 0%, rgba(245,240,232,0.04) 100%);
+    border: 1px solid rgba(245,240,232,0.12);
+    backdrop-filter: blur(12px);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196,98,58,0.6), transparent);
+  }
+  .card-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 28px;
+  }
+  .card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .card-title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.45);
+    margin-bottom: 32px;
+  }
+  .card-cities {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .card-city-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    margin-top: 3px;
+  }
+  .card-cities-text {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.5;
+  }
+  .card-passport {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(245,240,232,0.08);
+    padding-top: 20px;
+  }
+  .passport-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+  }
+  .passport-badge {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    border: 1px solid rgba(196,98,58,0.3);
+    padding: 4px 10px;
+  }
+
+  /* Marquee */
+  .marquee-section {
+    background: var(--navy);
+    padding: 20px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 28s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 32px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    flex-shrink: 0;
+  }
+  .marquee-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  /* About section */
+  .about {
+    padding: 140px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--terracotta);
+  }
+  .about-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 3.5vw, 58px);
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--navy);
+    margin-bottom: 28px;
+  }
+  .about-headline em { font-style: italic; color: var(--terracotta); }
+  .about-body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .about-right {
+    position: relative;
+  }
+  .about-visual {
+    background: var(--navy);
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 40% 30%, rgba(196,98,58,0.3) 0%, transparent 60%);
+  }
+  .about-visual-quote {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+  }
+  .about-visual-quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .about-visual-quote cite {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    font-style: normal;
+  }
+  .about-accent {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    border: 1px solid var(--sand-dark);
+    z-index: -1;
+  }
+
+  /* Pillars */
+  .pillars {
+    background: var(--warm-white);
+    padding: 120px 60px;
+  }
+  .pillars-header {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 80px;
+  }
+  .pillars-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 3vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--navy);
+  }
+  .pillars-headline em { font-style: italic; color: var(--terracotta); }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .pillar {
+    background: var(--cream);
+    padding: 52px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.35s ease;
+    cursor: none;
+  }
+  .pillar:hover { background: var(--navy); }
+  .pillar:hover .pillar-number,
+  .pillar:hover .pillar-title,
+  .pillar:hover .pillar-body { color: var(--cream); }
+  .pillar:hover .pillar-body { color: rgba(245,240,232,0.6); }
+  .pillar:hover .pillar-line { background: var(--terracotta); }
+  .pillar-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1;
+    margin-bottom: 24px;
+    transition: color 0.35s;
+  }
+  .pillar-line {
+    width: 32px;
+    height: 1px;
+    background: var(--terracotta);
+    margin-bottom: 20px;
+    transition: background 0.35s;
+  }
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 16px;
+    transition: color 0.35s;
+  }
+  .pillar-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+    font-weight: 300;
+    transition: color 0.35s;
+  }
+
+  /* Membership */
+  .membership {
+    padding: 140px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .membership-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 80px;
+  }
+  .membership-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 3.5vw, 60px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--navy);
+    max-width: 480px;
+  }
+  .membership-headline em { font-style: italic; color: var(--terracotta); }
+  .membership-sub {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 280px;
+    line-height: 1.7;
+    text-align: right;
+  }
+  .membership-tiers {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2px;
+  }
+  .tier {
+    padding: 60px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tier-standard {
+    background: var(--warm-white);
+    border: 1px solid var(--sand);
+  }
+  .tier-passport {
+    background: var(--navy);
+  }
+  .tier-passport::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--terracotta);
+  }
+  .tier-badge {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+  .tier-standard .tier-badge {
+    color: var(--muted);
+    border: 1px solid var(--sand-dark);
+  }
+  .tier-passport .tier-badge {
+    color: var(--terracotta-light);
+    border: 1px solid rgba(196,98,58,0.4);
+  }
+  .tier-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+  .tier-standard .tier-name { color: var(--navy); }
+  .tier-passport .tier-name { color: var(--cream); }
+  .tier-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 40px;
+  }
+  .tier-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1;
+  }
+  .tier-standard .tier-amount { color: var(--navy); }
+  .tier-passport .tier-amount { color: var(--cream); }
+  .tier-period {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+  .tier-standard .tier-period { color: var(--muted); }
+  .tier-passport .tier-period { color: rgba(245,240,232,0.45); }
+  .tier-features {
+    list-style: none;
+    margin-bottom: 48px;
+  }
+  .tier-features li {
+    font-size: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 300;
+  }
+  .tier-standard .tier-features li {
+    color: var(--muted);
+    border-color: var(--sand);
+  }
+  .tier-passport .tier-features li {
+    color: rgba(245,240,232,0.7);
+    border-color: rgba(245,240,232,0.08);
+  }
+  .feature-check {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 9px;
+  }
+  .tier-standard .feature-check {
+    background: var(--sand);
+    color: var(--muted);
+  }
+  .tier-passport .feature-check {
+    background: var(--terracotta);
+    color: var(--cream);
+  }
+  .btn-tier {
+    display: block;
+    text-align: center;
+    padding: 18px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: none;
+  }
+  .tier-standard .btn-tier {
+    border: 1px solid var(--navy);
+    color: var(--navy);
+  }
+  .tier-standard .btn-tier:hover {
+    background: var(--navy);
+    color: var(--cream);
+  }
+  .tier-passport .btn-tier {
+    background: var(--terracotta);
+    color: var(--cream);
+    border: 1px solid var(--terracotta);
+  }
+  .tier-passport .btn-tier:hover {
+    background: var(--terracotta-dark);
+    border-color: var(--terracotta-dark);
+  }
+
+  /* Cities */
+  .cities {
+    background: var(--navy);
+    padding: 120px 60px;
+    overflow: hidden;
+  }
+  .cities-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cities-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 3.5vw, 60px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+  .cities-headline em { font-style: italic; color: var(--terracotta); }
+  .cities-count {
+    text-align: right;
+  }
+  .cities-count-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .cities-count-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+  }
+  .cities-region-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.25);
+    margin-bottom: 12px;
+    padding-left: 2px;
+  }
+  .cities-grid {
+    display: grid;
+    gap: 2px;
+  }
+  .city-card {
+    padding: 40px 36px;
+    background: rgba(245,240,232,0.03);
+    border: 1px solid rgba(245,240,232,0.06);
+    position: relative;
+    transition: background 0.3s, border-color 0.3s;
+    cursor: none;
+  }
+  .city-card:hover {
+    background: rgba(196,98,58,0.08);
+    border-color: rgba(196,98,58,0.2);
+  }
+  .city-card.live::before {
+    content: 'Live';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    border: 1px solid rgba(196,98,58,0.3);
+    padding: 3px 8px;
+  }
+  .city-card.coming::before {
+    content: 'Coming soon';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.25);
+    border: 1px solid rgba(245,240,232,0.08);
+    padding: 3px 8px;
+  }
+  .city-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .city-region {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.3);
+  }
+
+  /* Apply section */
+  .apply {
+    padding: 160px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .apply-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 4vw, 72px);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--navy);
+  }
+  .apply-headline em { font-style: italic; color: var(--terracotta); }
+  .apply-body {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--muted);
+    font-weight: 300;
+    margin: 28px 0 0;
+  }
+  .apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .form-group label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--warm-white);
+    border: 1px solid var(--sand);
+    padding: 16px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--navy);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    cursor: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--terracotta);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--sand-dark); }
+  .form-group textarea { resize: none; height: 100px; }
+  .form-group select { color: var(--muted); }
+  .form-submit {
+    background: var(--terracotta);
+    color: var(--cream);
+    border: none;
+    padding: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: none;
+    transition: background 0.25s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--terracotta-dark); }
+  .form-note {
+    font-size: 12px;
+    color: var(--sand-dark);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--navy);
+    padding: 80px 60px 40px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+    margin-bottom: 40px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .footer-logo span { color: var(--terracotta); }
+  .footer-tagline {
+    font-size: 13px;
+    color: rgba(245,240,232,0.35);
+    margin-top: 8px;
+    letter-spacing: 0.06em;
+  }
+  .footer-links {
+    display: flex;
+    gap: 60px;
+  }
+  .footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 12px; }
+  .footer-col a {
+    font-size: 13px;
+    color: rgba(245,240,232,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(245,240,232,0.2);
+    letter-spacing: 0.06em;
+  }
+  .footer-social {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-social a {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-social a:hover { color: var(--terracotta-light); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes cardReveal {
+    from { opacity: 0; transform: translate(-50%, -44%); }
+    to   { opacity: 1; transform: translate(-50%, -50%); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50%       { transform: translate(-50%, -50%) translateY(-8px); }
+  }
+
+  .membership-card { animation: cardReveal 1.2s ease 0.8s forwards, float 5s ease-in-out 2.5s infinite; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Noise overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  /* Match step dots */
+  .match-step-dot {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.25);
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+  .match-step-dot.active { color: var(--terracotta-light); }
+
+  /* ── Past Events Gallery ── */
+  .events-gallery { padding: 120px 60px; background: var(--cream); }
+  .gallery-header { text-align: center; max-width: 600px; margin: 0 auto 72px; }
+  .gallery-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 3.5vw, 56px); font-weight: 300; line-height: 1.1; color: var(--navy); margin-bottom: 16px; }
+  .gallery-headline em { font-style: italic; color: var(--terracotta); }
+  .gallery-sub { font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 1200px; margin: 0 auto; }
+  .gallery-item { background: var(--navy); position: relative; overflow: hidden; cursor: none; aspect-ratio: 4/3; }
+  .gallery-item.wide { grid-column: span 2; aspect-ratio: 8/4; }
+  .gallery-item-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; background: linear-gradient(to top, rgba(28,43,58,0.9) 0%, transparent 100%); z-index: 2; }
+  .gallery-item-event { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--cream); margin-bottom: 4px; }
+  .gallery-item-date { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245,240,232,0.5); }
+  .gallery-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(196,98,58,0.15) 0%, rgba(28,43,58,1) 100%); }
+  .gallery-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── User Stories ── */
+  .stories { background: var(--warm-white); padding: 120px 60px; }
+  .stories-header { text-align: center; max-width: 560px; margin: 0 auto 80px; }
+  .stories-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 3.5vw, 56px); font-weight: 300; color: var(--navy); line-height: 1.1; }
+  .stories-headline em { font-style: italic; color: var(--terracotta); }
+  .story-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; margin: 0 auto 80px; padding: 60px; background: var(--cream); border: 1px solid var(--sand); position: relative; }
+  .story-tag { position: absolute; top: 32px; right: 32px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta); border: 1px solid rgba(196,98,58,0.3); padding: 5px 12px; }
+  .story-origin { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .story-origin::before { content: ''; display: block; width: 20px; height: 1px; background: var(--terracotta); }
+  .story-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3vw, 48px); font-weight: 300; color: var(--navy); line-height: 1.15; margin-bottom: 24px; }
+  .story-names em { font-style: italic; color: var(--terracotta); }
+  .story-body { font-size: 15px; line-height: 1.8; color: var(--muted); font-weight: 300; margin-bottom: 18px; }
+  .story-outcomes { display: flex; gap: 24px; margin-top: 8px; }
+  .story-outcome { display: flex; align-items: flex-start; gap: 10px; flex: 1; }
+  .outcome-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+  .outcome-text { font-size: 13px; line-height: 1.6; color: var(--navy); font-weight: 300; }
+  .story-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .story-photo { background: var(--navy); position: relative; overflow: hidden; }
+  .story-photo.tall { grid-column: span 2; aspect-ratio: 3/2; }
+  .story-photo.sq { aspect-ratio: 1; }
+  .story-photo-gradient { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(196,98,58,0.2), rgba(28,43,58,0.85)); display: flex; align-items: center; justify-content: center; }
+  .story-photo-label { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 300; font-style: italic; color: rgba(245,240,232,0.4); }
+  .story-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── Vetting / Exclusivity ── */
+  .vetting { background: var(--navy); padding: 100px 60px; }
+  .vetting-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .vetting-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 3vw, 52px); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 20px; }
+  .vetting-headline em { font-style: italic; color: var(--terracotta); }
+  .vetting-body { font-size: 15px; line-height: 1.8; color: rgba(245,240,232,0.55); font-weight: 300; margin-top: 16px; }
+  .vetting-criteria { display: flex; flex-direction: column; gap: 2px; }
+  .vetting-item { padding: 24px 32px; background: rgba(245,240,232,0.03); border: 1px solid rgba(245,240,232,0.07); display: flex; align-items: center; gap: 20px; transition: background 0.3s; }
+  .vetting-item:hover { background: rgba(245,240,232,0.06); }
+  .vetting-number { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--terracotta); opacity: 0.6; flex-shrink: 0; min-width: 36px; }
+  .vetting-text h4 { font-size: 14px; font-weight: 400; color: var(--cream); margin-bottom: 4px; letter-spacing: 0.04em; }
+  .vetting-text p { font-size: 12px; color: rgba(245,240,232,0.4); line-height: 1.5; }
+
+  /* ── Upcoming Events (Luma) ── */
+  .upcoming-events { padding: 120px 60px; background: var(--warm-white); }
+  .upcoming-header { display: flex; align-items: flex-end; justify-content: space-between; max-width: 1200px; margin: 0 auto 60px; }
+  .upcoming-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 3.5vw, 58px); font-weight: 300; color: var(--navy); line-height: 1.1; }
+  .upcoming-headline em { font-style: italic; color: var(--terracotta); }
+  .luma-embed-wrapper { max-width: 1200px; margin: 0 auto; border: 1px solid var(--sand); overflow: hidden; background: var(--warm-white); }
+
+  /* ── Founder Section ── */
+  .founder { background: var(--navy); padding: 120px 60px; }
+  .founder-inner { max-width: 1200px; margin: 0 auto; }
+  .founder-top { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; margin-bottom: 80px; }
+  .founder-photo-main { aspect-ratio: 3/4; background: var(--navy-mid); position: relative; overflow: hidden; }
+  .founder-photo-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 40% 30%, rgba(196,98,58,0.25) 0%, transparent 60%); }
+  .founder-photo-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .founder-photo-placeholder-text { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: rgba(245,240,232,0.2); }
+  .founder-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .founder-content { padding-top: 8px; }
+  .founder-intro-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 3vw, 52px); font-weight: 300; color: var(--cream); line-height: 1.12; margin-bottom: 32px; }
+  .founder-intro-headline em { font-style: italic; color: var(--terracotta); }
+  .founder-body { font-size: 15px; line-height: 1.85; color: rgba(245,240,232,0.6); font-weight: 300; margin-bottom: 18px; }
+  .founder-body strong { color: rgba(245,240,232,0.85); font-weight: 400; }
+  .founder-signature { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; font-style: italic; color: var(--cream); margin-top: 36px; }
+  .founder-role { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,232,0.3); margin-top: 6px; }
+  .founder-travel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .founder-travel-photo { aspect-ratio: 1; background: var(--navy-mid); position: relative; overflow: hidden; }
+  .founder-travel-photo-overlay { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(196,98,58,0.15) 0%, rgba(28,43,58,0.75) 100%); display: flex; align-items: center; justify-content: center; }
+  .travel-photo-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-style: italic; color: rgba(245,240,232,0.3); }
+  .travel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── Waitlist Section ── */
+  .waitlist { padding: 120px 60px; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+  .waitlist-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 4vw, 72px); font-weight: 300; line-height: 1.08; color: var(--navy); }
+  .waitlist-headline em { font-style: italic; color: var(--terracotta); }
+  .waitlist-body { font-size: 16px; line-height: 1.75; color: var(--muted); font-weight: 300; margin: 28px 0 0; }
+  .waitlist-badge { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+  .waitlist-badge-item { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); border: 1px solid rgba(196,98,58,0.35); padding: 7px 14px; }
+  .waitlist-form-wrap { background: var(--warm-white); border: 1px solid var(--sand); padding: 48px; }
+  .waitlist-form-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: block; }
+  .waitlist-form-headline { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--navy); margin-bottom: 32px; }
+
+  @media (max-width: 900px) {
+    nav { padding: 24px 28px; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 100px 28px 60px; }
+    .hero-right { height: 420px; }
+    .about { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
+    .pillars { padding: 80px 28px; }
+    .pillars-grid { grid-template-columns: 1fr; gap: 2px; }
+    .membership { padding: 80px 28px; }
+    .membership-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .membership-sub { text-align: left; }
+    .membership-tiers { grid-template-columns: 1fr; }
+    .cities { padding: 80px 28px; }
+    .cities-grid { grid-template-columns: repeat(2, 1fr); }
+    .cities-header { flex-direction: column; gap: 24px; align-items: flex-start; }
+    footer { padding: 60px 28px 32px; }
+    .footer-top { flex-direction: column; gap: 40px; }
+    .footer-links { gap: 32px; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+    #matchingApp { margin: 0 -28px; }
+    #signature { padding: 80px 28px; }
+    .events-gallery, .stories, .vetting, .upcoming-events, .founder { padding: 80px 28px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item.wide { grid-column: span 2; }
+    .story-feature { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+    .story-tag { position: static; display: inline-block; margin-bottom: 16px; }
+    .vetting-inner { grid-template-columns: 1fr; gap: 48px; }
+    .founder-top { grid-template-columns: 1fr; }
+    .founder-travel-grid { grid-template-columns: repeat(2, 1fr); }
+    .waitlist { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
+    .waitlist-form-wrap { padding: 32px 24px; }
+    .upcoming-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="logo">Invi<span>city</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#membership">Membership</a></li>
+    <li><a href="#cities">Cities</a></li>
+    <li><a href="#waitlist">Waitlist</a></li>
+  </ul>
+  <a href="#waitlist" class="nav-cta">Join the waitlist</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Global Membership Community</div>
+    <h1 class="hero-headline">
+      Your invite to<br>
+      <em>every city.</em>
+    </h1>
+    <p class="hero-sub">
+      Your invite to every city, and everyone worth knowing in it. A highly vetted membership community for ambitious twenty- and thirty-somethings. We host intimate gatherings — Invicity Nights — in cities around the world, and connect members so you always have someone to call when you land somewhere new.
+    </p>
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-primary"><span>Join the waitlist</span></a>
+      <a href="#about" class="btn-ghost">
+        Learn more
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 8h10M9 4l4 4-4 4"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-image-panel">
+      <!-- City grid SVG pattern -->
+      <svg class="city-grid" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+        <line x1="0" y1="100" x2="600" y2="100"/>
+        <line x1="0" y1="200" x2="600" y2="200"/>
+        <line x1="0" y1="300" x2="600" y2="300"/>
+        <line x1="0" y1="400" x2="600" y2="400"/>
+        <line x1="0" y1="500" x2="600" y2="500"/>
+        <line x1="0" y1="600" x2="600" y2="600"/>
+        <line x1="0" y1="700" x2="600" y2="700"/>
+        <line x1="100" y1="0" x2="100" y2="800"/>
+        <line x1="200" y1="0" x2="200" y2="800"/>
+        <line x1="300" y1="0" x2="300" y2="800"/>
+        <line x1="400" y1="0" x2="400" y2="800"/>
+        <line x1="500" y1="0" x2="500" y2="800"/>
+      </svg>
+
+      <!-- Membership card -->
+      <div class="membership-card">
+        <div class="card-inner">
+          <div class="card-logo">Invicity</div>
+          <div class="card-name">Stephanie L.</div>
+          <div class="card-title">Consultant · Founder</div>
+          <div class="card-cities">
+            <div class="card-city-dot"></div>
+            <div class="card-cities-text">
+              London · New York · Toronto<br>Vancouver · Beijing
+            </div>
+          </div>
+          <div class="card-passport">
+            <div class="passport-label">Invicity Passport</div>
+            <div class="passport-badge">Active</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- City list -->
+      <div class="hero-city-list">
+        <p>Active chapters</p>
+        <div class="city-tags">
+          <div class="city-tag active">London</div>
+          <div class="city-tag">New York</div>
+          <div class="city-tag">San Francisco</div>
+          <div class="city-tag">Los Angeles</div>
+          <div class="city-tag">Chicago</div>
+          <div class="city-tag">Nashville</div>
+          <div class="city-tag">Boston</div>
+          <div class="city-tag">Vancouver</div>
+          <div class="city-tag">Shanghai</div>
+          <div class="city-tag">Beijing</div>
+          <div class="city-tag">Hong Kong</div>
+          <div class="city-tag">Stockholm</div>
+        </div>
+      </div>
+
+      <!-- Stat -->
+      <div class="hero-stat">
+        <div class="hero-stat-number">1</div>
+        <div class="hero-stat-label">City active</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-item"><span class="marquee-dot"></span> Curated community</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Global passport</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Invicity Nights</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> City hubs</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Member matching</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Belong anywhere</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Ambitious professionals</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Connect everywhere</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Curated community</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Global passport</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Invicity Nights</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> City hubs</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Member matching</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Belong anywhere</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Ambitious professionals</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Connect everywhere</div>
+  </div>
+</div>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="about-left reveal">
+    <div class="section-eyebrow">Our story</div>
+    <h2 class="about-headline">Built for people<br>who are <em>always moving</em></h2>
+    <p class="about-body">
+      Whether you're a digital nomad, a frequent business traveler, or someone who simply refuses to stay in one place — Invicity was built for you.
+    </p>
+    <p class="about-body">
+      We're building the world's first truly global professional community — curated, intimate, and designed around the reality that the most ambitious people don't stay still.
+    </p>
+  </div>
+  <div class="about-right reveal">
+    <div class="about-visual">
+      <img src="photos/wine-night-invicity.jpg" alt="Invicity Wine Night London" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.75;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(8,11,16,0.85) 0%, rgba(8,11,16,0.1) 60%);"></div>
+      <div class="about-visual-quote">
+        <blockquote>"A city is only as good as the people you know in it. Invicity changed that for me."</blockquote>
+        <cite>Holly, Invicity member · London</cite>
+      </div>
+    </div>
+    <div class="about-accent"></div>
+  </div>
+</section>
+
+<!-- About / Founder Introduction -->
+<section class="founder" id="founder">
+<span id="about" style="position:absolute;top:-80px;visibility:hidden;"></span>
+  <div class="founder-inner">
+    <div class="reveal" style="margin-bottom:60px;">
+      <div class="section-eyebrow" style="color:rgba(245,240,232,0.4)">About · The Founder</div>
+    </div>
+    <div class="founder-top">
+      <div class="founder-photo-main reveal">
+        <img class="founder-img" src="photos/stephanie-profile.jpg" alt="Stephanie L., Founder of Invicity">
+        <div class="founder-photo-bg"></div>
+      </div>
+      <div class="founder-content reveal">
+        <h2 class="founder-intro-headline">Hi, I'm Stephanie —<br><em>founder of Invicity.</em></h2>
+        <p class="founder-body">I spent over three years in management consulting in the US, advising Fortune 500 companies on how to build better systems. Meanwhile, I was quietly building one of my own — a life stitched together across cities.</p>
+        <p class="founder-body"><strong>Here's the thing about your twenties: your people end up everywhere.</strong> After college, my best friends scattered across the world — San Francisco, New York, Stockholm, Barcelona, Hong Kong, and more. Suddenly my favorite hobby was going to the airport. I'd fly out on a Friday just to crash someone's Monday trivia night, be a plus-one at a party where I knew no one, or sign up for a dance class and completely humiliate myself. Worth it every time.</p>
+        <p class="founder-body">But here's what I didn't expect: the best nights weren't the Eiffel Tower or the must-see museum. They were the random Tuesdays when you start dancing with strangers and somehow end up at three more parties by 2am.</p>
+        <p class="founder-body">I've moved countries twice — from home to the US for college, then from the US to London — both times knowing no one. What I've learned is that <strong>a city is only as good as the people you know in it.</strong></p>
+        <p class="founder-body">That's why I left consulting to build Invicity. We've already hosted Invicity Nights in London, with members flying in from other countries just to be there. And this is only the beginning.</p>
+        <p class="founder-body" style="font-style:italic;">If your group chat is already spread across three time zones, you're one of us.</p>
+        <div class="founder-signature">Stephanie</div>
+        <div class="founder-role">Founder, Invicity · London</div>
+      </div>
+    </div>
+
+    <!-- Travel photo grid — 9 photos, 3×3 -->
+    <div class="reveal" style="margin-bottom:24px;">
+      <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,240,232,0.25);margin-bottom:16px;">Life in cities</div>
+    </div>
+    <div class="founder-travel-grid reveal" style="grid-template-columns:repeat(3,1fr);">
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Paris.jpg" alt="Paris">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Paris</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/New York City.jpg" alt="New York">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">New York</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Rome.jpg" alt="Rome">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Rome</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Abu Dhabi.jpg" alt="Abu Dhabi">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Abu Dhabi</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Phuket Thailand.jpg" alt="Phuket">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Phuket</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Jeju Island.jpg" alt="Jeju Island">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Jeju Island</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Honolulu.jpg" alt="Honolulu">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Honolulu</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/North Shore HI.jpg" alt="North Shore Hawaii">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">North Shore</span></div>
+      </div>
+      <div class="founder-travel-photo">
+        <img class="travel-img" src="photos/Napa CA.jpg" alt="Napa">
+        <div class="founder-travel-photo-overlay"><span class="travel-photo-label">Napa</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pillars -->
+<section class="pillars" id="pillars">
+  <div class="pillars-header reveal">
+    <div class="section-eyebrow" style="justify-content:center">What we offer</div>
+    <h2 class="pillars-headline">More than a Meetup,<br><em>the network travels with you.</em></h2>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar reveal">
+      <div class="pillar-number">01</div>
+      <div class="pillar-line"></div>
+      <h3 class="pillar-title">Invicity Nights</h3>
+      <p class="pillar-body">Curated events in every city — intimate by design, exceptional by standard. The room is always worth being in.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-number">02</div>
+      <div class="pillar-line"></div>
+      <h3 class="pillar-title">Member matching</h3>
+      <p class="pillar-body">Land in a new city and know exactly who to meet. Our matching connects you with the right people before you even arrive.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-number">03</div>
+      <div class="pillar-line"></div>
+      <h3 class="pillar-title">City hubs</h3>
+      <p class="pillar-body">Local ambassadors who know the city the way you wish you did. Insider access, real relationships, genuine community.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Past Events Gallery -->
+<section class="events-gallery" id="events">
+  <div class="gallery-header reveal">
+    <div class="section-eyebrow" style="justify-content:center">Past events</div>
+    <h2 class="gallery-headline">Invicity <em>Nights</em></h2>
+    <p class="gallery-sub">Intimate evenings designed for real connection. This is what an Invicity Night looks like.</p>
+  </div>
+  <!-- Wine Night -->
+  <div class="reveal" style="max-width:1200px;margin:0 auto 8px;">
+    <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-left:2px;">Invicity Wine Night · London</div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <img class="gallery-img" src="photos/wine-night-invicity.jpg" alt="Invicity Wine Night London">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Invicity Wine Night — London</div>
+          <div class="gallery-item-date">2026 · London, UK</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/wine-night-4.jpg" alt="Invicity Wine Night">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Wine Night</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/wine-night-1.jpg" alt="Invicity Wine Night">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Wine Night</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/wine-night-2.jpg" alt="Invicity Wine Night">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Wine Night</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Picnic -->
+  <div class="reveal" style="max-width:1200px;margin:0 auto 8px;">
+    <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-left:2px;">Invicity Picnic · London</div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <img class="gallery-img" src="photos/picnic-3.jpg" alt="Invicity Picnic">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Invicity Picnic — London</div>
+          <div class="gallery-item-date">2026 · London, UK</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/picnic-1.jpg" alt="Invicity Picnic">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Picnic</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/picnic-4.jpg" alt="Invicity Picnic">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Picnic</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img" src="photos/picnic-5.jpg" alt="Invicity Picnic">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Picnic</div>
+          <div class="gallery-item-date">London · 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pub Trip -->
+  <div class="reveal" style="max-width:1200px;margin:0 auto;">
+    <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-left:2px;">Invicity Pub Trip · London</div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <img class="gallery-img" src="photos/pub-trip-1.jpg" alt="Invicity Pub Trip">
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-event">Invicity Pub Trip — London</div>
+          <div class="gallery-item-date">2026 · London, UK</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="reveal" style="text-align:center;margin-top:32px;font-size:13px;color:var(--muted);">Follow <a href="https://instagram.com/invicitynetwork" target="_blank" style="color:var(--terracotta);text-decoration:none;">@invicitynetwork</a> for more.</p>
+</section>
+
+<!-- User Stories -->
+<section class="stories">
+  <div class="stories-header reveal">
+    <div class="section-eyebrow" style="justify-content:center">From the community</div>
+    <h2 class="stories-headline">Real <em>connections.</em><br>Real stories.</h2>
+  </div>
+
+  <div class="story-feature reveal">
+    <div class="story-tag">Member story</div>
+    <div>
+      <div class="story-origin">Met at Invicity Wine Night · London</div>
+      <h3 class="story-names">Holly <em>&amp;</em> Stella</h3>
+      <p class="story-body">Holly and Stella met at an Invicity Wine Night in London — two strangers who quickly became close friends. Within months, they were on a plane to Scotland together for a week-long trip.</p>
+      <p class="story-body">The friendship didn't stop there. Holly's family runs an Asian grocery store, and Stella sells her own cosmetics line. Today, Stella's products are stocked on Holly's family's shelves — a real business partnership that started with a single glass of wine.</p>
+      <div class="story-outcomes">
+        <div class="story-outcome">
+          <div class="outcome-icon">✈</div>
+          <div class="outcome-text">Flew to Scotland together within months of meeting</div>
+        </div>
+        <div class="story-outcome">
+          <div class="outcome-icon">🤝</div>
+          <div class="outcome-text">Built a business partnership — Stella's cosmetics now in Holly's family store</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-visual">
+      <div class="story-photo tall">
+        <img class="story-img" src="photos/holly-stella-1.jpg" alt="Holly and Stella">
+        <div class="story-photo-gradient" style="opacity:0.3;"></div>
+      </div>
+      <div class="story-photo sq">
+        <img class="story-img" src="photos/wine-night-3.jpg" alt="Invicity Wine Night">
+        <div class="story-photo-gradient" style="opacity:0.3;"></div>
+      </div>
+      <div class="story-photo sq">
+        <img class="story-img" src="photos/holly-stella-2.jpg" alt="Stella">
+        <div class="story-photo-gradient" style="opacity:0.3;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="max-width:1200px;margin:0 auto;text-align:center;padding:48px 20px;border-top:1px solid var(--sand);">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2vw,34px);font-weight:300;font-style:italic;color:var(--navy);max-width:660px;margin:0 auto 16px;">"A city is only as good as the people you know in it."</p>
+    <p style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);">— Stephanie, Founder of Invicity</p>
+  </div>
+</section>
+
+<!-- Membership -->
+<section class="membership" id="membership">
+  <div class="membership-header reveal">
+    <h2 class="membership-headline">Two ways to<br><em>belong</em></h2>
+    <p class="membership-sub">We're opening doors carefully. Join the waitlist now — pricing will be announced ahead of launch.</p>
+  </div>
+  <div class="membership-tiers reveal">
+    <div class="tier tier-standard">
+      <div class="tier-badge">Community</div>
+      <div class="tier-name">Explorer</div>
+      <div class="tier-price">
+        <div class="tier-amount" style="font-size:36px;">Coming soon</div>
+      </div>
+      <ul class="tier-features">
+        <li><span class="feature-check">✓</span> Access to Invicity events</li>
+        <li><span class="feature-check">✓</span> Community newsletter</li>
+        <li><span class="feature-check">✓</span> One city chapter access</li>
+        <li><span class="feature-check">✓</span> Member directory (limited)</li>
+      </ul>
+      <a href="#waitlist" class="btn-tier">Join the waitlist</a>
+    </div>
+    <div class="tier tier-passport">
+      <div class="tier-badge">✦ Full access</div>
+      <div class="tier-name" style="color:var(--cream)">Passport</div>
+      <div class="tier-price">
+        <div class="tier-amount" style="font-size:36px;color:var(--cream)">Coming soon</div>
+      </div>
+      <div style="font-size:12px;color:rgba(245,240,232,0.4);margin-bottom:32px;letter-spacing:0.04em;">Early waitlist members get founding member pricing</div>
+      <ul class="tier-features">
+        <li><span class="feature-check">✓</span> All global city chapters</li>
+        <li><span class="feature-check">✓</span> Priority event access + discounts</li>
+        <li><span class="feature-check">✓</span> <strong style="font-weight:500">1 free member match every month</strong></li>
+        <li><span class="feature-check">✓</span> Full member directory</li>
+        <li><span class="feature-check">✓</span> Invicity city guides</li>
+        <li><span class="feature-check">✓</span> Ambassador introductions</li>
+      </ul>
+      <a href="#waitlist" class="btn-tier">Join the waitlist</a>
+    </div>
+  </div>
+</section>
+
+<!-- Vetting / Exclusivity -->
+<section class="vetting">
+  <div class="vetting-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Why we're different</div>
+      <h2 class="vetting-headline">We curate the room<br>so you don't have to<br><em>filter the people.</em></h2>
+      <p class="vetting-body">Invicity isn't a platform you sign up to and forget. Every member is reviewed personally. We keep our gatherings intimate by design — the quality of the room is the point.</p>
+      <p class="vetting-body">When you walk into an Invicity Night, everyone there has been vetted. That's what makes the connections real.</p>
+    </div>
+    <div class="vetting-criteria reveal">
+      <div class="vetting-item">
+        <div class="vetting-number">01</div>
+        <div class="vetting-text">
+          <h4>Application required</h4>
+          <p>Every prospective member completes a personal application — no auto-approvals.</p>
+        </div>
+      </div>
+      <div class="vetting-item">
+        <div class="vetting-number">02</div>
+        <div class="vetting-text">
+          <h4>Reviewed personally</h4>
+          <p>Stephanie and the Invicity team reviews every application by hand.</p>
+        </div>
+      </div>
+      <div class="vetting-item">
+        <div class="vetting-number">03</div>
+        <div class="vetting-text">
+          <h4>Limited by city</h4>
+          <p>Chapters stay small and intentional. We don't scale quality out of a room.</p>
+        </div>
+      </div>
+      <div class="vetting-item">
+        <div class="vetting-number">04</div>
+        <div class="vetting-text">
+          <h4>Referrals welcomed</h4>
+          <p>The fastest path in is through someone who's already part of it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cities -->
+<section class="cities" id="cities">
+  <div class="cities-header reveal">
+    <h2 class="cities-headline">Where we<br><em>gather</em></h2>
+    <div class="cities-count">
+      <div class="cities-count-num">12</div>
+      <div class="cities-count-label">Cities launching 2025–26</div>
+    </div>
+  </div>
+
+  <!-- United States -->
+  <div class="cities-region reveal" style="max-width:1200px;margin:0 auto 48px;">
+    <div class="cities-region-label">United States</div>
+    <div class="cities-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="city-card coming">
+        <div class="city-name">New York</div>
+        <div class="city-region">NY</div>
+      </div>
+      <div class="city-card coming">
+        <div class="city-name">San Francisco</div>
+        <div class="city-region">CA</div>
+      </div>
+      <div class="city-card coming">
+        <div class="city-name">Los Angeles</div>
+        <div class="city-region">CA</div>
+      </div>
+      <div class="city-card coming">
+        <div class="city-name">Chicago</div>
+        <div class="city-region">IL</div>
+      </div>
+      <div class="city-card coming">
+        <div class="city-name">Nashville</div>
+        <div class="city-region">TN</div>
+      </div>
+      <div class="city-card coming">
+        <div class="city-name">Boston</div>
+        <div class="city-region">MA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- United Kingdom -->
+  <div class="cities-region reveal" style="max-width:1200px;margin:0 auto 48px;">
+    <div class="cities-region-label">United Kingdom</div>
+    <div class="cities-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="city-card live">
+        <div class="city-name">London</div>
+        <div class="city-region">England</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Canada -->
+  <div class="cities-region reveal" style="max-width:1200px;margin:0 auto 48px;">
+    <div class="cities-region-label">Canada</div>
+    <div class="cities-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="city-card coming">
+        <div class="city-name">Vancouver</div>
+        <div class="city-region">BC</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- China -->
+  <div class="cities-region reveal" style="max-width:1200px;margin:0 auto 48px;">
+    <div class="cities-region-label">China</div>
+    <div class="cities-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="city-card coming">
+        <div class="city-name">Shanghai</div>
+        <div class="city-region">China</div>
+      </div>
+      <div class="city-card coming">
+        <div class="city-name">Beijing</div>
+        <div class="city-region">China</div>
+      </div>
+      <div class="city-card coming">
+        <div class="city-name">Hong Kong</div>
+        <div class="city-region">SAR</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scandinavia -->
+  <div class="cities-region reveal" style="max-width:1200px;margin:0 auto 0;">
+    <div class="cities-region-label">Scandinavia</div>
+    <div class="cities-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="city-card coming">
+        <div class="city-name">Stockholm</div>
+        <div class="city-region">Sweden</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Invicity Signature Experience -->
+<section id="signature" style="background:var(--warm-white);padding:120px 60px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 72px;">
+      <div class="section-eyebrow" style="justify-content:center">Invicity Signature Experience</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--terracotta);padding:5px 14px;margin-bottom:20px;">
+        <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream);">Coming Soon</span>
+      </div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(38px,3.5vw,58px);font-weight:300;line-height:1.12;color:var(--navy);margin-bottom:20px;">
+        Meet your person<br>in every <em style="font-style:italic;color:var(--terracotta)">city</em>
+      </h2>
+      <p style="font-size:16px;line-height:1.8;color:var(--muted);font-weight:300;">We personally match ambitious travelers with the right local Invicity member — someone in your industry, at your level, with something worth sharing. One introduction. Real connection. <em>Currently a demo — launching soon for Passport members.</em></p>
+    </div>
+
+    <!-- Matching interface -->
+    <div class="reveal" id="matchingApp" style="background:var(--navy);max-width:960px;margin:0 auto;position:relative;overflow:hidden;">
+      <!-- Top bar -->
+      <div style="padding:28px 40px;border-bottom:1px solid rgba(245,240,232,0.07);display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--cream);letter-spacing:0.04em;">Invicity Match</div>
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-top:2px;">Signature Experience</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--terracotta);"></div>
+          <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,240,232,0.4);">Passport members only</span>
+        </div>
+      </div>
+
+      <!-- Step indicator -->
+      <div style="padding:24px 40px 0;display:flex;gap:6px;" id="matchSteps">
+        <div class="match-step-dot active" data-step="1">Find a match</div>
+        <div style="flex:1;height:1px;background:rgba(245,240,232,0.08);align-self:center;margin:0 8px;"></div>
+        <div class="match-step-dot" data-step="2">Review profile</div>
+        <div style="flex:1;height:1px;background:rgba(245,240,232,0.08);align-self:center;margin:0 8px;"></div>
+        <div class="match-step-dot" data-step="3">Request intro</div>
+      </div>
+
+      <!-- Panel 1: Search -->
+      <div id="matchPanel1" style="padding:32px 40px 40px;">
+        <p style="font-size:13px;color:rgba(245,240,232,0.45);margin-bottom:28px;line-height:1.6;">Tell us where you're heading and what you're looking for. We'll find your match within 48 hours.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div>
+            <label style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.4);display:block;margin-bottom:8px;">Traveling to</label>
+            <select id="matchCity" style="width:100%;background:rgba(245,240,232,0.05);border:1px solid rgba(245,240,232,0.1);color:var(--cream);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;appearance:none;cursor:pointer;outline:none;">
+              <option value="">Select city</option>
+              <option>London</option>
+              <option>New York</option>
+              <option>San Francisco</option>
+              <option>Los Angeles</option>
+              <option>Chicago</option>
+              <option>Nashville</option>
+              <option>Boston</option>
+              <option>Vancouver</option>
+              <option>Shanghai</option>
+              <option>Beijing</option>
+              <option>Hong Kong</option>
+              <option>Stockholm</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.4);display:block;margin-bottom:8px;">Travel dates</label>
+            <input type="text" id="matchDates" placeholder="e.g. June 10–17" style="width:100%;background:rgba(245,240,232,0.05);border:1px solid rgba(245,240,232,0.1);color:var(--cream);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;outline:none;" onfocus="this.style.borderColor='rgba(196,98,58,0.5)'" onblur="this.style.borderColor='rgba(245,240,232,0.1)'">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
+          <div>
+            <label style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.4);display:block;margin-bottom:8px;">Your industry</label>
+            <select id="matchIndustry" style="width:100%;background:rgba(245,240,232,0.05);border:1px solid rgba(245,240,232,0.1);color:var(--cream);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;appearance:none;cursor:pointer;outline:none;">
+              <option value="">Select industry</option>
+              <option>Technology</option>
+              <option>Finance & Banking</option>
+              <option>Consulting</option>
+              <option>Media & Entertainment</option>
+              <option>Fashion & Luxury</option>
+              <option>Real Estate</option>
+              <option>Healthcare</option>
+              <option>Law</option>
+              <option>Startups & Venture</option>
+              <option>Creative & Design</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.4);display:block;margin-bottom:8px;">Match preference</label>
+            <select id="matchPref" style="width:100%;background:rgba(245,240,232,0.05);border:1px solid rgba(245,240,232,0.1);color:var(--cream);padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;appearance:none;cursor:pointer;outline:none;">
+              <option value="">What matters most</option>
+              <option>Same industry</option>
+              <option>Complementary field</option>
+              <option>Founder / entrepreneur</option>
+              <option>Local insider</option>
+              <option>Open to anything</option>
+            </select>
+          </div>
+        </div>
+        <button onclick="showMatchPanel(2)" style="background:var(--terracotta);color:var(--cream);border:none;padding:16px 36px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;width:100%;" onmouseover="this.style.background='#A84E2C'" onmouseout="this.style.background='var(--terracotta)'">Find my match →</button>
+      </div>
+
+      <!-- Panel 2: Match profile -->
+      <div id="matchPanel2" style="padding:32px 40px 40px;display:none;">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:28px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:#4CAF50;"></div>
+          <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.5);">Your match is ready</span>
+        </div>
+
+        <div style="background:rgba(245,240,232,0.04);border:1px solid rgba(245,240,232,0.08);padding:32px;margin-bottom:24px;position:relative;">
+          <div style="position:absolute;top:20px;right:20px;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--terracotta-light);border:1px solid rgba(196,98,58,0.3);padding:4px 10px;">Passport local</div>
+          <div style="display:flex;align-items:center;gap:20px;margin-bottom:24px;">
+            <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(196,98,58,0.3),rgba(28,43,58,0.8));border:1px solid rgba(196,98,58,0.2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--cream);">A</div>
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--cream);">Alexandra W.</div>
+              <div style="font-size:12px;color:rgba(245,240,232,0.45);letter-spacing:0.06em;">VP Strategy · Tech · <span id="matchCityDisplay">London</span></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+            <div style="text-align:center;padding:14px;background:rgba(245,240,232,0.03);border:1px solid rgba(245,240,232,0.06);">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--cream);">8</div>
+              <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-top:2px;">Years in city</div>
+            </div>
+            <div style="text-align:center;padding:14px;background:rgba(245,240,232,0.03);border:1px solid rgba(245,240,232,0.06);">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--cream);">94%</div>
+              <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-top:2px;">Match score</div>
+            </div>
+            <div style="text-align:center;padding:14px;background:rgba(245,240,232,0.03);border:1px solid rgba(245,240,232,0.06);">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--cream);">12</div>
+              <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-top:2px;">Intros made</div>
+            </div>
+          </div>
+          <p style="font-size:13px;line-height:1.7;color:rgba(245,240,232,0.5);font-style:italic;">"Happy to show visitors the London that doesn't make it onto any list. Best for founders and operators passing through."</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <button onclick="showMatchPanel(1)" style="background:transparent;color:rgba(245,240,232,0.5);border:1px solid rgba(245,240,232,0.12);padding:16px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:300;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;">← Back</button>
+          <button onclick="showMatchPanel(3)" style="background:var(--terracotta);color:var(--cream);border:none;padding:16px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;" onmouseover="this.style.background='#A84E2C'" onmouseout="this.style.background='var(--terracotta)'">Request intro →</button>
+        </div>
+      </div>
+
+      <!-- Panel 3: Confirm -->
+      <div id="matchPanel3" style="padding:32px 40px 40px;display:none;text-align:center;">
+        <div style="width:56px;height:56px;border-radius:50%;background:rgba(196,98,58,0.15);border:1px solid rgba(196,98,58,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:22px;">✦</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--cream);margin-bottom:12px;">Intro requested</div>
+        <p style="font-size:14px;line-height:1.8;color:rgba(245,240,232,0.5);max-width:380px;margin:0 auto 32px;">We'll connect you with Alexandra within 48 hours. She'll receive your profile and reach out to arrange a time to meet in <span id="matchCityDisplay2">London</span>.</p>
+        <div style="background:rgba(245,240,232,0.03);border:1px solid rgba(245,240,232,0.07);padding:20px;max-width:320px;margin:0 auto 32px;text-align:left;">
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:10px;">Your remaining matches</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--terracotta-light);">0</div>
+            <div style="font-size:12px;color:rgba(245,240,232,0.4);line-height:1.5;">of 1 monthly match used.<br>Resets in 28 days.</div>
+          </div>
+        </div>
+        <button onclick="resetMatch()" style="background:transparent;color:rgba(245,240,232,0.4);border:1px solid rgba(245,240,232,0.1);padding:12px 28px;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;">Start over</button>
+      </div>
+    </div>
+
+    <!-- Note below matching -->
+    <p class="reveal" style="text-align:center;font-size:13px;color:var(--muted);margin-top:32px;line-height:1.7;">Every match is reviewed and made personally by the Invicity team. No algorithm. Just good judgment.</p>
+  </div>
+</section>
+
+<!-- Upcoming Events (Luma) -->
+<section class="upcoming-events" id="upcoming">
+  <div class="upcoming-header reveal">
+    <div>
+      <div class="section-eyebrow">What's next</div>
+      <h2 class="upcoming-headline">Upcoming<br><em>Invicity Nights</em></h2>
+    </div>
+    <a href="https://lu.ma/calendar/cal-QVlAAKcLluR8cOy" target="_blank" class="btn-ghost" style="color:var(--terracotta);border-bottom:1px solid rgba(196,98,58,0.4);padding-bottom:2px;text-decoration:none;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">
+      View all on Luma →
+    </a>
+  </div>
+  <!-- Luma calendar embed -->
+  <div class="luma-embed-wrapper reveal">
+    <iframe
+      src="https://lu.ma/embed/calendar/cal-QVlAAKcLluR8cOy/events?lt=light"
+      width="100%"
+      height="480"
+      frameborder="0"
+      style="border:none;display:block;"
+      allowfullscreen
+      aria-hidden="false"
+      tabindex="0"
+    ></iframe>
+  </div>
+
+  <!-- Fallback upcoming event cards (shown if Luma embed is unavailable) -->
+  <div class="reveal" style="max-width:1200px;margin:32px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+    <div style="background:var(--cream);border:1px solid var(--sand);padding:36px 32px;position:relative;">
+      <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--terracotta);border:1px solid rgba(184,150,90,0.3);padding:4px 10px;display:inline-block;margin-bottom:20px;">London · Upcoming</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--navy);margin-bottom:8px;">Invicity Night</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.6;">An intimate evening for members and selected guests in London. Details sent to waitlist first.</div>
+      <a href="https://lu.ma/calendar/cal-QVlAAKcLluR8cOy" target="_blank" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta);text-decoration:none;">View on Luma →</a>
+    </div>
+    <div style="background:var(--cream);border:1px solid var(--sand);padding:36px 32px;">
+      <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);border:1px solid var(--sand-dark);padding:4px 10px;display:inline-block;margin-bottom:20px;">More cities · Coming soon</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--navy);margin-bottom:8px;">Expanding in 2026</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.6;">New York, San Francisco, Hong Kong and more. Waitlist members get first access when new cities launch.</div>
+      <a href="#waitlist" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta);text-decoration:none;">Join the waitlist →</a>
+    </div>
+    <div style="background:var(--navy);padding:36px 32px;">
+      <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--terracotta-light);border:1px solid rgba(184,150,90,0.3);padding:4px 10px;display:inline-block;margin-bottom:20px;">Members only</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--cream);margin-bottom:8px;">Get notified first</div>
+      <div style="font-size:12px;color:rgba(245,240,232,0.5);margin-bottom:20px;line-height:1.6;">All events are announced to waitlist members before public release. Spots are limited by design.</div>
+      <a href="#waitlist" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta-light);text-decoration:none;">Join the waitlist →</a>
+    </div>
+  </div>
+  <p class="reveal" style="text-align:center;margin-top:24px;font-size:12px;color:var(--sand-dark);">View all events on <a href="https://lu.ma/calendar/cal-QVlAAKcLluR8cOy" target="_blank" style="color:var(--terracotta);text-decoration:none;">lu.ma</a></p>
+</section>
+
+<!-- Waitlist -->
+<section id="waitlist" style="background:var(--cream);">
+<div class="waitlist">
+  <div class="apply-left reveal">
+    <div class="section-eyebrow">Join Invicity</div>
+    <h2 class="waitlist-headline">Secure your<br><em>spot</em></h2>
+    <p class="waitlist-body">We're opening doors city by city, carefully. Tell us who you are and where you're headed — we'll be in touch when your chapter opens.</p>
+    <div class="waitlist-badge">
+      <div class="waitlist-badge-item">Application reviewed personally</div>
+      <div class="waitlist-badge-item">Limited spots per city</div>
+      <div class="waitlist-badge-item">Early access perks</div>
+    </div>
+  </div>
+  <div class="waitlist-form-wrap reveal" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-height:320px;">
+    <span class="waitlist-form-label">Waitlist application</span>
+    <p class="waitlist-form-headline">Ready to find<br>your people?</p>
+    <p style="font-size:14px;line-height:1.75;color:var(--muted);font-weight:300;margin-bottom:40px;">Takes 2 minutes. We review every application personally and will be in touch shortly.</p>
+    <a href="https://tally.so/r/q4RLNk" target="_blank" class="btn-primary" style="display:inline-block;">
+      <span>Apply now →</span>
+    </a>
+    <p style="font-size:11px;color:var(--sand-dark);margin-top:20px;letter-spacing:0.04em;">Opens in a new tab · Takes 2 minutes</p>
+  </div>
+</div>
+</section>
+
+<!-- (legacy apply section — hidden anchor for any stale links) -->
+<span id="apply" style="display:none"></span>
+<section style="display:none">
+  <div class="apply-left reveal">
+    <div class="section-eyebrow">Membership application</div>
+    <h2 class="apply-headline">Join the<br><em>inner circle</em></h2>
+    <p class="apply-body">We review every application personally. Tell us who you are, where you're headed, and what you're building. We're looking for people who make the room better.</p>
+    <div style="margin-top:40px;padding:24px;background:var(--warm-white);border:1px solid var(--sand);">
+      <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Application takes</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--navy);">2 minutes</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;">Two quick steps. We'll be in touch within 5–7 days.</div>
+    </div>
+  </div>
+  <div class="apply-form reveal">
+
+    <!-- Step progress -->
+    <div style="display:flex;align-items:center;gap:0;margin-bottom:36px;">
+      <div id="stepIndicator1" style="display:flex;align-items:center;gap:8px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;">1</div>
+        <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);">About you</span>
+      </div>
+      <div style="flex:1;height:1px;background:var(--sand);margin:0 16px;"></div>
+      <div id="stepIndicator2" style="display:flex;align-items:center;gap:8px;">
+        <div id="step2Circle" style="width:28px;height:28px;border-radius:50%;border:1px solid var(--sand-dark);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;">2</div>
+        <span id="step2Label" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">Your socials</span>
+      </div>
+    </div>
+
+    <form id="applicationForm">
+
+      <!-- STEP 1 -->
+      <div id="formStep1">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First name</label>
+            <input type="text" name="first_name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label>Last name</label>
+            <input type="text" name="last_name" placeholder="Last name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" name="email" placeholder="you@email.com" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Home city</label>
+            <input type="text" name="home_city" placeholder="Where you're based">
+          </div>
+          <div class="form-group">
+            <label>Membership type</label>
+            <select name="membership_type">
+              <option value="" disabled selected>Select one</option>
+              <option>Explorer (Free)</option>
+              <option>Passport — $29/month</option>
+              <option>Passport — $299/year</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Current industry</label>
+            <select name="industry">
+              <option value="" disabled selected>Your industry</option>
+              <option>Technology</option>
+              <option>Finance & Banking</option>
+              <option>Consulting</option>
+              <option>Media & Entertainment</option>
+              <option>Fashion & Luxury</option>
+              <option>Real Estate</option>
+              <option>Healthcare</option>
+              <option>Law</option>
+              <option>Startups & Venture</option>
+              <option>Creative & Design</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Annual salary range</label>
+            <select name="salary_range">
+              <option value="" disabled selected>Select range</option>
+              <option>Under $50K</option>
+              <option>$50K – $100K</option>
+              <option>$100K – $150K</option>
+              <option>$150K – $250K</option>
+              <option>$250K – $500K</option>
+              <option>$500K+</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>What do you do?</label>
+          <input type="text" name="role" placeholder="Role, company, or what you're building">
+        </div>
+        <div class="form-group">
+          <label>Referral — who invited you?</label>
+          <input type="text" name="referral" placeholder="Name or Invicity handle (if applicable)">
+        </div>
+        <div class="form-group">
+          <label>Why Invicity?</label>
+          <textarea name="why_invicity" placeholder="Tell us what brought you here..."></textarea>
+        </div>
+        <button type="button" onclick="goToStep2()" class="form-submit">Continue — social profiles →</button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="formStep2" style="display:none;">
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:28px;">Share your social handles so we can get to know you better. Only what you're comfortable with — all fields are optional.</p>
+
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </label>
+          <input type="text" name="linkedin" placeholder="linkedin.com/in/yourhandle">
+        </div>
+
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </label>
+          <input type="text" name="instagram" placeholder="@yourhandle">
+        </div>
+
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X (Twitter)
+          </label>
+          <input type="text" name="twitter" placeholder="@yourhandle">
+        </div>
+
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </label>
+          <input type="text" name="whatsapp" placeholder="+1 (555) 000-0000">
+        </div>
+
+        <div class="form-group">
+          <label style="display:flex;align-items:center;gap:10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.81a4.85 4.85 0 01-1.07-.12z"/></svg>
+            TikTok
+          </label>
+          <input type="text" name="tiktok" placeholder="@yourhandle">
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+          <button type="button" onclick="goToStep1()" class="form-submit" style="background:transparent;color:var(--navy);border:1px solid var(--sand-dark);">← Back</button>
+          <button type="button" onclick="handleApply()" class="form-submit" id="submitBtn">Submit application</button>
+        </div>
+        <p class="form-note" style="margin-top:16px;">Applications reviewed within 5–7 days. Social handles are kept private.</p>
+      </div>
+
+    </form>
+
+    <div id="formSuccess" style="display:none;text-align:center;padding:60px 20px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--navy);margin-bottom:16px;">Application received ✦</div>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;">Thank you for applying to Invicity. We review every application personally and will be in touch within 5–7 days.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Invi<span>city</span></div>
+      <div class="footer-tagline">Your invite to every city, and everyone worth knowing in it.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#cities">Cities</a></li>
+          <li><a href="#membership">Membership</a></li>
+          <li><a href="#waitlist">Join Waitlist</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://instagram.com/invicitynetwork" target="_blank">Instagram</a></li>
+          <li><a href="https://tiktok.com/@invicitynetwork" target="_blank">TikTok</a></li>
+          <li><a href="https://linkedin.com/company/invicity" target="_blank">LinkedIn</a></li>
+          <li><a href="mailto:hello@invicity.com">hello@invicity.com</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Invicity. All rights reserved.</div>
+    <div class="footer-social">
+      <a href="https://instagram.com/invicitynetwork" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@invicitynetwork" target="_blank">TikTok</a>
+      <a href="https://linkedin.com/company/invicity" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .pillar, .city-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+      ring.style.transform = 'translate(-50%,-50%) scale(1.4)';
+      ring.style.opacity = '0.25';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.opacity = '0.5';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // City tag interaction
+  document.querySelectorAll('.city-tag').forEach(tag => {
+    tag.addEventListener('click', function() {
+      document.querySelectorAll('.city-tag').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Multi-step form
+  function goToStep2() {
+    const first = document.querySelector('[name="first_name"]').value;
+    const email = document.querySelector('[name="email"]').value;
+    if (!first || !email) { alert('Please fill in your name and email to continue.'); return; }
+    document.getElementById('formStep1').style.display = 'none';
+    document.getElementById('formStep2').style.display = 'block';
+    const c2 = document.getElementById('step2Circle');
+    const l2 = document.getElementById('step2Label');
+    c2.style.background = 'var(--navy)';
+    c2.style.color = 'var(--cream)';
+    c2.style.border = 'none';
+    l2.style.color = 'var(--navy)';
+    window.scrollTo({ top: document.getElementById('apply').offsetTop - 80, behavior: 'smooth' });
+  }
+  function goToStep1() {
+    document.getElementById('formStep2').style.display = 'none';
+    document.getElementById('formStep1').style.display = 'block';
+    const c2 = document.getElementById('step2Circle');
+    const l2 = document.getElementById('step2Label');
+    c2.style.background = 'transparent';
+    c2.style.color = 'var(--muted)';
+    c2.style.border = '1px solid var(--sand-dark)';
+    l2.style.color = 'var(--muted)';
+  }
+
+  // Form submission
+  async function handleApply() {
+    const form = document.getElementById('applicationForm');
+    const btn = document.getElementById('submitBtn');
+    const success = document.getElementById('formSuccess');
+    const data = new FormData(form);
+    const payload = {};
+    data.forEach((v, k) => payload[k] = v);
+    payload['_subject'] = 'New Invicity Membership Application';
+    btn.textContent = 'Submitting...';
+    btn.style.opacity = '0.7';
+    try {
+      const res = await fetch('https://formspree.io/f/mzdygbyg', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.textContent = 'Submit application';
+        btn.style.opacity = '1';
+        alert('Something went wrong. Please email stephliu58@gmail.com directly.');
+      }
+    } catch(e) {
+      btn.textContent = 'Submit application';
+      btn.style.opacity = '1';
+      alert('Something went wrong. Please email stephliu58@gmail.com directly.');
+    }
+  }
+
+  // Matching experience UI
+  function showMatchPanel(n) {
+    [1,2,3].forEach(i => {
+      document.getElementById('matchPanel'+i).style.display = i===n ? 'block' : 'none';
+    });
+    document.querySelectorAll('.match-step-dot').forEach((d,i) => {
+      d.classList.toggle('active', i+1 <= n);
+    });
+    if (n === 2) {
+      const city = document.getElementById('matchCity').value || 'your city';
+      document.getElementById('matchCityDisplay').textContent = city;
+    }
+    if (n === 3) {
+      const city = document.getElementById('matchCity').value || 'your city';
+      document.getElementById('matchCityDisplay2').textContent = city;
+    }
+  }
+  function resetMatch() {
+    document.getElementById('matchCity').value = '';
+    document.getElementById('matchDates').value = '';
+    document.getElementById('matchIndustry').value = '';
+    document.getElementById('matchPref').value = '';
+    showMatchPanel(1);
+  }
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.backdropFilter = 'blur(12px)';
+    } else {
+      nav.style.backdropFilter = 'none';
+    }
+  });
+</script>
+</body>
+</html>
