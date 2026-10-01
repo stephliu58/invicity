@@ -113,7 +113,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--ivory);
+    background: var(--deep-forest);
+    border-bottom: 1px solid var(--hairline-dark);
   }
   nav::before {
     content: '';
@@ -173,11 +174,11 @@
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--steel-text-dark);
     text-decoration: none;
     transition: color var(--dur) var(--ease);
   }
-  nav ul a:hover { color: var(--navy); }
+  nav ul a:hover { color: var(--ivory); }
   .nav-cta {
     font-family: var(--font-ui);
     font-size: 15px;
@@ -231,9 +232,11 @@
   .hero-eyebrow::before {
     content: '';
     display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--terracotta);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
   }
 
   .hero-headline {
@@ -414,8 +417,8 @@
     animation: cardReveal 1.2s ease 0.8s forwards;
   }
   .card-inner {
-    background: var(--forest);
-    border: 1px solid var(--control-border-dark);
+    background: var(--deep-forest);
+    border: 1px solid var(--champagne);
     padding: 32px;
     position: relative;
     overflow: hidden;
@@ -432,7 +435,7 @@
     font-size: 12px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--text-muted-dark);
+    color: var(--champagne);
     margin-bottom: 28px;
   }
   .card-name {
@@ -456,8 +459,8 @@
   .card-city-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: var(--text-muted-dark);
-    opacity: 0.6;
+    background: var(--champagne);
+    opacity: 0.7;
     margin-top: 3px;
   }
   .card-cities-text {
@@ -478,15 +481,15 @@
     font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--text-muted-dark);
+    color: var(--champagne);
   }
   .passport-badge {
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--text-muted-dark);
-    border: 1px solid var(--control-border-dark);
+    color: var(--champagne);
+    border: 1px solid var(--champagne);
     padding: 4px 10px;
     border-radius: var(--radius);
   }
@@ -548,9 +551,11 @@
   .section-eyebrow::before {
     content: '';
     display: block;
-    width: 24px;
-    height: 1px;
-    background: var(--terracotta);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
   }
   .about-headline {
     font-family: var(--font-display);
@@ -666,7 +671,7 @@
   .pillar-line {
     width: 32px;
     height: 1px;
-    background: var(--terracotta);
+    background: var(--hairline-light);
     margin-bottom: 20px;
     transition: background 0.35s;
   }
@@ -1193,7 +1198,7 @@
   .story-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; margin: 0 auto 80px; padding: 60px; background: var(--cream); border: 1px solid var(--sand); position: relative; }
   .story-tag { position: absolute; top: 32px; right: 32px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel-text-dark); border: 1px solid var(--control-border-dark); padding: 5px 12px; }
   .story-origin { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel-text-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-  .story-origin::before { content: ''; display: block; width: 20px; height: 1px; background: var(--terracotta); }
+  .story-origin::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
   .story-names { font-family: var(--font-display); font-size: clamp(32px, 3vw, 48px); font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 24px; }
   .story-names em { font-style: italic; color: inherit; }
   .story-body { font-size: 15px; line-height: 1.8; color: var(--muted); font-weight: 400; margin-bottom: 18px; }
@@ -1298,6 +1303,45 @@
     .upcoming-header { flex-direction: column; gap: 16px; align-items: flex-start; }
   }
 
+
+  /* Route motif — brand signature */
+  .inv-route {
+    height: 2px; border: 0; margin: 0;
+    background-image: linear-gradient(to right, var(--sage) 0 3.4px, transparent 3.4px 7.8px);
+    background-size: 7.8px 2px;
+    background-repeat: repeat-x;
+    opacity: 0.7;
+  }
+  .route-motif {
+    display: flex; align-items: center; gap: 0;
+    height: 2px; margin: 48px 0;
+  }
+  .route-motif-dot-depart {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--sage); flex-shrink: 0;
+  }
+  .route-motif-dash {
+    flex: 1; height: 2px;
+    background-image: linear-gradient(to right, var(--sage) 0 3.4px, transparent 3.4px 7.8px);
+    background-size: 7.8px 2px;
+    background-repeat: repeat-x;
+    opacity: 0.6;
+  }
+  .route-motif-dot-arrive {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ivory); flex-shrink: 0;
+    border: 1px solid var(--sage);
+  }
+  /* On dark sections the arrival dot is ivory (filled) */
+  .inv-route-dark { opacity: 0.5; }
+  /* Transit label style */
+  .transit-label {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--steel-text-dark);
+  }
+  .transit-label-sep { opacity: 0.4; }
   .inv-logo { display: inline-flex; align-items: center; text-decoration: none; }
   .inv-logo img { height: 36px; width: auto; display: block; }
   :where(a,button,[role='button'],input,select,textarea):focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; border-radius: 2px; }
@@ -1313,7 +1357,7 @@
 <!-- Nav -->
 <nav>
   <a href="#" class="logo inv-logo">
-      <img src="/brand/logo/logo-light.svg" alt="Invicity" height="36" style="width:auto;">
+      <img src="/brand/logo/logo-dark.svg" alt="Invicity" height="36" style="width:auto;">
     </a>
   <ul>
     <li><a href="#about">About us</a></li>
@@ -1328,14 +1372,19 @@
 <!-- Hero -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">Global Membership Community</div>
+    <div class="hero-eyebrow">By invitation &nbsp;·&nbsp; London · New York · Tokyo · Paris</div>
     <h1 class="hero-headline">
-      Your invite to<br>
-      <em>every city</em>
+      A room in every city<br>
+      where you <em>already belong.</em>
     </h1>
     <p class="hero-sub">
-      A membership for the in-between generation — ambitious young professionals whose work and lives cross cities. We host intimate dinners and salons in chapters around the world, and introduce members one-to-one, so you always have someone to call when you land somewhere new.
+      Invicity is a private membership for people who move between cities for work and stay for everything else. Curated events, intimate dinners, and one-to-one introductions — so you always have someone to call when you land somewhere new. Membership is reviewed, not purchased.
     </p>
+    <div class="route-motif" style="max-width:220px;">
+      <div class="route-motif-dot-depart"></div>
+      <div class="route-motif-dash"></div>
+      <div class="route-motif-dot-arrive" style="background:var(--deep-forest);border-color:var(--sage-dim);"></div>
+    </div>
     <div class="hero-actions">
       <a href="#waitlist" class="btn-primary"><span>Request an invitation</span></a>
       <a href="#about" class="btn-ghost">
@@ -1368,9 +1417,10 @@
       <!-- Membership card -->
       <div class="membership-card">
         <div class="card-inner">
-          <div class="card-logo">Invicity</div>
+          <div class="card-logo">Membership</div>
           <div class="card-name">Stephanie L.</div>
           <div class="card-title">Consultant · Founder</div>
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;color:var(--champagne);margin-bottom:24px;">№ 0001 &nbsp;·&nbsp; Since 2026</div>
           <div class="card-cities">
             <div class="card-city-dot"></div>
             <div class="card-cities-text">
@@ -1412,6 +1462,9 @@
   </div>
 </section>
 
+<!-- Route divider -->
+<hr class="inv-route">
+
 <!-- Marquee -->
 <div class="marquee-section">
   <div class="marquee-track" id="marquee">
@@ -1433,6 +1486,9 @@
     <div class="marquee-item"><span class="marquee-dot"></span> Connect everywhere</div>
   </div>
 </div>
+
+<!-- Route divider -->
+<hr class="inv-route">
 
 <!-- About -->
 <section class="about" id="about">
@@ -1699,6 +1755,9 @@
 </section>
 
 <!-- Membership -->
+<!-- Route divider -->
+<hr class="inv-route">
+
 <section class="membership" id="membership">
   <div class="membership-header reveal">
     <h2 class="membership-headline">Two ways to<br><em>belong</em></h2>
