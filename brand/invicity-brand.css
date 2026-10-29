@@ -1,5 +1,5 @@
 /* ==========================================================================
-   INVICITY BRAND CSS — v3.0
+   INVICITY BRAND CSS — v3.0 structure, v2.1 FINAL colours (Invicity Design System.html, Aug 2026)
    <link rel="stylesheet" href="invicity-brand.css">
    Single source of truth: mirrors _ds/.../tokens/colors.css. Never hand-type hexes.
    ========================================================================== */
@@ -8,22 +8,22 @@
 
 :root {
   /* ---- Color: each value has one job ----------------------------------- */
-  --deep-forest: #16211b;   /* ground */
-  --forest:      #2a3a31;   /* raised surface — 2.1:1 vs ground, no border needed */
+  --deep-forest: #1a2620;   /* ground */
+  --forest:      #26342c;   /* raised surface — 2.1:1 vs ground, no border needed */
   --ivory:       #f3f1ec;   /* light ground · text on dark (13.9:1) */
   --sage:        #b6c7a1;   /* ONLY interactive: CTA, links, focus, route */
   --sage-dim:    #9fb287;   /* sage hover — forest text on it 6.9:1 */
-  --champagne:   #d9c7a4;   /* membership moments only */
+  --champagne:   #c9b79b;   /* membership moments only */
 
   /* text floors — nothing lighter than these */
   --text-muted-dark:  rgba(243, 241, 236, 0.70);  /* 7.0:1 on deep forest */
-  --text-muted-light: rgba(22, 33, 27, 0.72);     /* 7.4:1 on ivory */
+  --text-muted-light: rgba(26, 38, 32, 0.72);     /* 7.4:1 on ivory */
   --steel-text-dark:  #98a1ac;                    /* 6.0:1 */
   --steel-text-light: #5c6570;                    /* 5.2:1 */
 
   /* edges */
   --hairline-dark:  rgba(182, 199, 161, 0.22);   /* decorative only */
-  --hairline-light: rgba(22, 33, 27, 0.20);      /* decorative only */
+  --hairline-light: rgba(26, 38, 32, 0.20);      /* decorative only */
   --control-border-dark:  #66776a;               /* inputs/controls — 3.3:1 */
   --control-border-light: #7d8a80;               /* inputs/controls — 3.4:1 */
 

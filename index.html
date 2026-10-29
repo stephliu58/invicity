@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/brand/invicity-brand.css">
 <link rel="icon" href="/brand/logo/invicity-favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/brand/logo/invicity-avatar-forest-1024.png">
-<meta name="theme-color" content="#16211b">
+<meta name="theme-color" content="#1a2620">
 <meta property="og:title" content="Invicity — Your invite to every city">
 <meta property="og:description" content="A private membership for people who move between cities. The London founding cohort starts January 2027.">
 <meta property="og:image" content="https://invicity.co/brand/logo/invicity-avatar-forest-1024.png">
@@ -82,8 +82,8 @@
   @media (max-width: 480px) { .cta-long { display: none; } .cta-short { display: inline; } .site-nav .inv-btn { margin-left: 0; padding: 0 18px; } }
 
   /* ── Hero ─────────────────────────────────────────────── */
-  .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; padding-top: 69px; }
-  .hero-left { background: var(--ivory); color: var(--deep-forest); padding: clamp(56px, 8vw, 112px) var(--pad-x); display: flex; flex-direction: column; justify-content: center; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; padding: calc(69px + clamp(16px, 2vw, 28px)) clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px); gap: clamp(16px, 2vw, 28px); }
+  .hero-left { border-radius: 3px; background: var(--ivory); color: var(--deep-forest); padding: clamp(56px, 8vw, 112px) var(--pad-x); display: flex; flex-direction: column; justify-content: center; }
   .hero-left .inv-meta { margin-bottom: 32px; }
   .hero-left .inv-display { margin-bottom: 28px; }
   .hero-left .inv-body { max-width: 46ch; }
@@ -104,7 +104,7 @@
   .on-dark .link-arrow { color: var(--sage); }
   .on-dark .link-arrow:hover { color: var(--ivory); }
 
-  .hero-right { position: relative; background: var(--deep-forest); overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 48px; padding: clamp(56px, 8vw, 112px) var(--pad-x); }
+  .hero-right { position: relative; background: transparent; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 48px; padding: clamp(56px, 8vw, 112px) var(--pad-x); }
   .hero-grid { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.08; pointer-events: none; }
   .hero-grid line { stroke: var(--ivory); stroke-width: 0.5; }
   .hero-stat { position: absolute; top: 28px; right: var(--pad-x); text-align: right; }
@@ -176,7 +176,7 @@
   .about-photo { position: relative; aspect-ratio: 4 / 5; }
   .about-photo img { position: absolute; inset: 0; }
   .quote { margin-top: 24px; }
-  .quote blockquote { font-family: var(--font-display); font-style: italic; font-size: 28px; line-height: 1.3; color: var(--deep-forest); }
+  .quote blockquote { font-family: var(--font-display); font-style: italic; font-size: 28px; line-height: 1.3; color: var(--ivory); }
   .quote .inv-meta { margin-top: 12px; }
 
   /* ── Founder ──────────────────────────────────────────── */
@@ -194,13 +194,13 @@
   .travel-item figcaption { position: absolute; left: 12px; bottom: 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ivory); background: var(--deep-forest); padding: 4px 8px; border-radius: var(--radius); }
 
   /* ── Pillars ──────────────────────────────────────────── */
-  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 0; border-top: 1px solid var(--hairline-light); }
+  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 0; border-top: 1px solid var(--hairline-dark); }
   .pillar { padding: 40px 32px 0 0; }
-  .pillar + .pillar { padding-left: 32px; border-left: 1px solid var(--hairline-light); }
+  .pillar + .pillar { padding-left: 32px; border-left: 1px solid var(--hairline-dark); }
   .pillar .inv-numeral { font-size: clamp(64px, 7vw, 96px); margin-bottom: 20px; }
-  .pillar h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.2; margin-bottom: 12px; }
-  .pillar p { font-size: 16px; line-height: 1.7; color: var(--text-muted-light); }
-  @media (max-width: 900px) { .pillar + .pillar { padding-left: 0; border-left: 0; } .pillar { padding-bottom: 32px; border-bottom: 1px solid var(--hairline-light); } }
+  .pillar h3 { color: var(--ivory); font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.2; margin-bottom: 12px; }
+  .pillar p { font-size: 16px; line-height: 1.7; color: var(--text-muted-dark); }
+  @media (max-width: 900px) { .pillar + .pillar { padding-left: 0; border-left: 0; } .pillar { padding-bottom: 32px; border-bottom: 1px solid var(--hairline-dark); } }
 
   /* ── Events gallery ───────────────────────────────────── */
   .events { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: clamp(40px, 5vw, 56px) 24px; }
@@ -210,20 +210,20 @@
   .event-photos.single .inv-photo:first-child { aspect-ratio: 3 / 2; }
   .event-meta { margin-top: 20px; }
   .event-meta h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.2; margin: 8px 0 6px; }
-  .event-meta p { font-size: 15px; line-height: 1.6; color: var(--text-muted-light); }
-  .follow { margin-top: 48px; font-size: 15px; color: var(--text-muted-light); }
+  .event-meta p { font-size: 15px; line-height: 1.6; color: var(--text-muted-dark); }
+  .follow { margin-top: 48px; font-size: 15px; color: var(--text-muted-dark); }
 
   /* ── Stories ──────────────────────────────────────────── */
-  .story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 80px); align-items: start; padding-top: 40px; border-top: 1px solid var(--hairline-light); }
+  .story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 80px); align-items: start; padding-top: 40px; border-top: 1px solid var(--hairline-dark); }
   .story h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.1; margin: 14px 0 24px; }
   .story .inv-body + .inv-body { margin-top: 16px; }
   .outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
-  .outcome { border-top: 1px solid var(--hairline-light); padding-top: 14px; font-size: 15px; line-height: 1.55; }
+  .outcome { border-top: 1px solid var(--hairline-dark); padding-top: 14px; font-size: 15px; line-height: 1.55; }
   .outcome .inv-meta { margin-bottom: 6px; }
   .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .story-photos .inv-photo { aspect-ratio: 1; }
   .story-photos .inv-photo:first-child { grid-column: span 2; aspect-ratio: 3 / 2; }
-  .pull { margin-top: clamp(56px, 8vw, 96px); padding-top: 48px; border-top: 1px solid var(--hairline-light); text-align: center; }
+  .pull { margin: clamp(56px, 8vw, 96px) auto 0; max-width: 720px; padding: clamp(32px, 5vw, 56px); text-align: center; border-radius: 3px; }
   .pull p:first-child { font-family: var(--font-display); font-style: italic; font-size: clamp(28px, 2.6vw, 40px); line-height: 1.25; max-width: 24ch; margin: 0 auto 14px; }
 
   /* ── Membership tiers ─────────────────────────────────── */
@@ -231,14 +231,14 @@
   .tiers-head .inv-body { max-width: 36ch; }
   .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
   .tier { border-radius: 3px; padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; }
-  .tier--explorer { border: 1px solid var(--hairline-light); }
+  .tier--explorer { border: 1px solid var(--hairline-dark); }
   .tier--passport { background: var(--deep-forest); color: var(--ivory); border: 1px solid var(--champagne); }
   .tier h3 { font-family: var(--font-display); font-weight: 400; font-size: 40px; line-height: 1.1; margin: 20px 0 4px; }
-  .tier .price { font-family: var(--font-display); font-size: 28px; color: var(--text-muted-light); }
+  .tier .price { font-family: var(--font-display); font-size: 28px; color: var(--text-muted-dark); }
   .tier--passport .price { color: var(--text-muted-dark); }
   .tier .note { font-size: 14px; color: var(--text-muted-dark); margin-top: 8px; }
   .tier ul { margin: 28px 0 36px; flex: 1; }
-  .tier li { font-size: 15px; padding: 12px 0; border-top: 1px solid var(--hairline-light); color: var(--text-muted-light); }
+  .tier li { font-size: 15px; padding: 12px 0; border-top: 1px solid var(--hairline-dark); color: var(--text-muted-dark); }
   .tier--passport li { border-top-color: var(--hairline-dark); color: var(--text-muted-dark); }
   .tier li strong { font-weight: 500; color: var(--ivory); }
   .tier .inv-btn { width: 100%; }
@@ -264,7 +264,7 @@
 
   /* ── Signature (demo) ─────────────────────────────────── */
   .soon { display: inline-flex; margin-bottom: 20px; }
-  .match { max-width: 960px; margin: 0 auto; background: var(--deep-forest); color: var(--ivory); border-radius: 3px; overflow: hidden; }
+  .match { max-width: 960px; margin: 0 auto; background: var(--forest); color: var(--ivory); border-radius: 3px; overflow: hidden; }
   .match-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 24px clamp(20px, 4vw, 40px); border-bottom: 1px solid var(--hairline-dark); }
   .match-title { font-family: var(--font-ui); font-weight: 500; font-size: 18px; }
   .match-steps { display: flex; align-items: center; gap: 8px; padding: 24px clamp(20px, 4vw, 40px) 0; }
@@ -278,7 +278,7 @@
   .field label { display: block; margin-bottom: 8px; }
   select.inv-input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--text-muted-dark) 50%), linear-gradient(135deg, var(--text-muted-dark) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
   select.inv-input option { color: var(--deep-forest); }
-  .profile { background: var(--forest); border-radius: 3px; padding: clamp(20px, 3vw, 32px); margin: 20px 0 24px; }
+  .profile { background: var(--deep-forest); border-radius: 3px; padding: clamp(20px, 3vw, 32px); margin: 20px 0 24px; }
   .profile-head { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
   .avatar { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--control-border-dark); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 28px; flex-shrink: 0; }
   .profile-name { font-family: var(--font-display); font-size: 28px; line-height: 1.1; }
@@ -289,14 +289,14 @@
   .btn-row .inv-btn, .match .inv-btn--block { width: 100%; }
 
   /* ── Upcoming ─────────────────────────────────────────── */
-  .luma { border: 1px solid var(--hairline-light); border-radius: 3px; overflow: hidden; background: #fff; }
+  .luma { border: 1px solid var(--hairline-dark); border-radius: 3px; overflow: hidden; background: var(--forest); }
   .luma iframe { display: block; width: 100%; border: 0; }
   .upcoming-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; margin-top: 24px; }
-  .u-card { border: 1px solid var(--hairline-light); border-radius: 3px; padding: 28px; display: flex; flex-direction: column; gap: 10px; }
-  .u-card--dark { background: var(--deep-forest); color: var(--ivory); border-color: var(--deep-forest); }
+  .u-card { border: 1px solid var(--hairline-dark); border-radius: 3px; padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .u-card--ivory { background: var(--ivory); color: var(--deep-forest); border-color: var(--ivory); }
   .u-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.2; }
-  .u-card p { font-size: 15px; line-height: 1.6; color: var(--text-muted-light); flex: 1; }
-  .u-card--dark p { color: var(--text-muted-dark); }
+  .u-card p { font-size: 15px; line-height: 1.6; color: var(--text-muted-dark); flex: 1; }
+  .u-card--ivory p { color: var(--text-muted-light); }
 
   /* ── Waitlist ─────────────────────────────────────────── */
   .waitlist-box { background: var(--forest); border-radius: 3px; padding: clamp(28px, 4vw, 48px); }
@@ -317,7 +317,7 @@
   /* ── Responsive ───────────────────────────────────────── */
   @media (max-width: 860px) {
     .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-    .hero-right { padding-top: 88px; }
+    .hero-right { padding-top: 56px; }
     .cohort-intro, .cohort-who, .split, .founder-top, .story { grid-template-columns: minmax(0, 1fr); }
     .cohort-film { padding-bottom: 0; }
     .cohort-film .film-inset { position: relative; right: auto; bottom: auto; display: block; width: 62%; margin: -14% 0 0 auto; }
@@ -545,7 +545,7 @@
 </section>
 
 <!-- About -->
-<section class="sec inv-on-light" id="about">
+<section class="sec" id="about">
   <div class="wrap split">
     <div class="reveal">
       <p class="inv-meta">Our story</p>
@@ -602,7 +602,7 @@
 </section>
 
 <!-- Pillars -->
-<section class="sec inv-on-light" id="pillars">
+<section class="sec" id="pillars">
   <div class="wrap">
     <div class="sec-head center reveal">
       <p class="inv-meta">What we offer</p>
@@ -629,9 +629,9 @@
 </section>
 
 <!-- Past events -->
-<section class="sec inv-on-light" id="events" style="padding-top:0;">
+<section class="sec" id="events">
   <div class="wrap">
-    <div class="sec-head center reveal" style="padding-top:var(--pad-y);border-top:1px solid var(--hairline-light);">
+    <div class="sec-head center reveal">
       <p class="inv-meta">Past events &nbsp;·&nbsp; London</p>
       <h2 class="inv-display-md">Invicity <em>Nights</em></h2>
       <p class="inv-body">Intimate evenings designed for real connection — with partners across London. This is what an Invicity Night looks like.</p>
@@ -722,9 +722,9 @@
 </section>
 
 <!-- Stories -->
-<section class="sec inv-on-light" style="padding-top:0;">
+<section class="sec" id="stories">
   <div class="wrap">
-    <div class="sec-head center reveal" style="padding-top:var(--pad-y);border-top:1px solid var(--hairline-light);">
+    <div class="sec-head center reveal">
       <p class="inv-meta">From the community</p>
       <h2 class="inv-display-md">Real <em>connections.</em> Real stories.</h2>
     </div>
@@ -745,7 +745,7 @@
         <div class="inv-photo"><img src="/photos/web/holly-stella-1.jpg" alt="Invicity Wine Night" loading="lazy"></div>
       </div>
     </div>
-    <div class="pull reveal">
+    <div class="pull reveal inv-on-light">
       <p>"A city is only as good as the people you know in it."</p>
       <p class="inv-meta">Stephanie, founder of Invicity</p>
     </div>
@@ -753,15 +753,15 @@
 </section>
 
 <!-- Membership -->
-<section class="sec inv-on-light" id="membership" style="padding-top:0;">
+<section class="sec" id="membership">
   <div class="wrap">
-    <div class="sec-head tiers-head reveal" style="padding-top:var(--pad-y);border-top:1px solid var(--hairline-light);">
+    <div class="sec-head tiers-head reveal">
       <h2 class="inv-display-md">Two ways to <em>belong</em></h2>
       <p class="inv-body">We're opening doors carefully. Request an invitation — pricing will be announced ahead of launch.</p>
     </div>
     <div class="tiers reveal">
       <div class="tier tier--explorer">
-        <span class="inv-badge" style="align-self:flex-start;background:transparent;border:1px solid var(--control-border-light);color:var(--deep-forest);">Community</span>
+        <span class="inv-badge" style="align-self:flex-start;background:transparent;border:1px solid var(--control-border-dark);color:var(--ivory);">Community</span>
         <h3>Explorer</h3>
         <div class="price">Coming soon</div>
         <ul>
@@ -847,7 +847,7 @@
 </section>
 
 <!-- Signature Experience -->
-<section class="sec inv-on-light" id="signature">
+<section class="sec" id="signature">
   <div class="wrap">
     <div class="sec-head center reveal">
       <p class="inv-meta">Invicity Signature Experience</p>
@@ -920,9 +920,9 @@
 </section>
 
 <!-- Upcoming -->
-<section class="sec inv-on-light" id="upcoming" style="padding-top:0;">
+<section class="sec" id="upcoming">
   <div class="wrap">
-    <div class="sec-head tiers-head reveal" style="padding-top:var(--pad-y);border-top:1px solid var(--hairline-light);">
+    <div class="sec-head tiers-head reveal">
       <div>
         <p class="inv-meta">What's next</p>
         <h2 class="inv-display-md" style="margin-top:20px;">Upcoming <em>Invicity Nights</em></h2>
@@ -930,7 +930,7 @@
       <a href="https://lu.ma/calendar/cal-QVlAAKcLluR8cOy" target="_blank" rel="noopener" class="link-arrow">View all on Luma <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
     </div>
     <div class="luma reveal">
-      <iframe src="https://lu.ma/embed/calendar/cal-QVlAAKcLluR8cOy/events?lt=light" height="480" title="Upcoming Invicity events on Luma" loading="lazy" allowfullscreen></iframe>
+      <iframe src="https://lu.ma/embed/calendar/cal-QVlAAKcLluR8cOy/events?lt=dark" height="480" title="Upcoming Invicity events on Luma" loading="lazy" allowfullscreen></iframe>
     </div>
     <div class="upcoming-cards reveal">
       <div class="u-card">
@@ -945,7 +945,7 @@
         <p>New York, San Francisco, Hong Kong and more. The waitlist gets first access when new cities open.</p>
         <a href="#waitlist" class="link-arrow">Join the waitlist <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
       </div>
-      <div class="u-card u-card--dark on-dark">
+      <div class="u-card u-card--ivory inv-on-light">
         <p class="inv-meta">Founding cohort</p>
         <h3>Kicks off 18 January</h3>
         <p>Up to 50 places in London. Applications close 15 December.</p>
