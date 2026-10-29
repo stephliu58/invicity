@@ -105,13 +105,14 @@
   .on-dark .link-arrow { color: var(--sage); }
   .on-dark .link-arrow:hover { color: var(--ivory); }
 
-  .hero-right { position: relative; background: transparent; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 48px; padding: clamp(56px, 8vw, 112px) var(--pad-x); }
-  .hero-grid { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.08; pointer-events: none; }
-  .hero-grid line { stroke: var(--ivory); stroke-width: 0.5; }
-  .hero-stat { position: absolute; top: 28px; right: var(--pad-x); text-align: right; }
-  .hero-stat .num { font-family: var(--font-display); font-size: 56px; line-height: 1; color: var(--ivory); }
-
-  .member-card { position: relative; width: min(100%, 320px); }
+  .hero-right { position: relative; border-radius: var(--radius); overflow: hidden; min-height: 560px; }
+  .hero-photo { position: absolute; inset: 0; border-radius: var(--radius); }
+  .hero-photo img { object-position: center 38%; }
+  .hero-caption { position: absolute; bottom: 20px; right: 20px; background: var(--deep-forest); color: var(--ivory); padding: 6px 12px; border-radius: var(--radius); }
+  .member-card { position: absolute; left: clamp(16px, 3vw, 36px); top: clamp(16px, 3vw, 36px); width: min(calc(100% - 32px), 280px); }
+  .member-card .inv-member-card { padding: 26px 28px; }
+  .member-card .mc-top { margin-bottom: 18px; }
+  .member-card .mc-no { margin: 16px 0 14px; }
   .member-card .inv-member-card { gap: 0; }
   .mc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
   .mc-top img { width: 28px; height: 28px; }
@@ -251,6 +252,10 @@
   .criterion h3 { font-family: var(--font-ui); font-weight: 500; font-size: 16px; color: var(--ivory); margin-bottom: 4px; }
   .criterion p:not(.inv-meta) { font-size: 14px; line-height: 1.55; color: var(--steel-text-dark); }
 
+  .room-photo { margin-top: 36px; }
+  .room-photo .inv-photo { aspect-ratio: 3 / 2; }
+  .room-photo figcaption { margin-top: 12px; }
+
   /* ── Cities ───────────────────────────────────────────── */
   .cities-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; }
   .cities-head .num { font-family: var(--font-display); font-size: 64px; line-height: 1; text-align: right; }
@@ -317,7 +322,10 @@
   /* ── Responsive ───────────────────────────────────────── */
   @media (max-width: 860px) {
     .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-    .hero-right { padding-top: 56px; }
+    .hero-right { min-height: 0; overflow: visible; }
+    .hero-photo { position: relative; inset: auto; aspect-ratio: 4 / 3; }
+    .hero-caption { bottom: auto; top: 12px; right: 12px; }
+    .member-card { position: static; width: 100%; margin-top: 16px; }
     .cohort-intro, .cohort-who, .split, .founder-top, .story { grid-template-columns: minmax(0, 1fr); }
     .cohort-film { padding-bottom: 0; }
     .cohort-film .film-inset { position: relative; right: auto; bottom: auto; display: block; width: 62%; margin: -14% 0 0 auto; }
@@ -369,15 +377,9 @@
     </div>
   </div>
 
-  <div class="hero-right" aria-label="Invicity membership">
-    <svg class="hero-grid" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <line x1="0" y1="100" x2="600" y2="100"/><line x1="0" y1="200" x2="600" y2="200"/><line x1="0" y1="300" x2="600" y2="300"/><line x1="0" y1="400" x2="600" y2="400"/><line x1="0" y1="500" x2="600" y2="500"/><line x1="0" y1="600" x2="600" y2="600"/><line x1="0" y1="700" x2="600" y2="700"/>
-      <line x1="100" y1="0" x2="100" y2="800"/><line x1="200" y1="0" x2="200" y2="800"/><line x1="300" y1="0" x2="300" y2="800"/><line x1="400" y1="0" x2="400" y2="800"/><line x1="500" y1="0" x2="500" y2="800"/>
-    </svg>
-    <div class="hero-stat">
-      <div class="num">1</div>
-      <p class="inv-meta">City active</p>
-    </div>
+  <div class="hero-right" aria-label="Invicity members at the Autumn Social">
+    <div class="inv-photo hero-photo"><img src="/photos/web/hero-community.jpg" alt="Four Invicity members smiling with champagne at the Autumn Social with London Arts Network, shot on a disposable camera" fetchpriority="high"></div>
+    <p class="inv-meta hero-caption">Autumn Social &nbsp;·&nbsp; London &nbsp;·&nbsp; Oct 2026</p>
 
     <div class="member-card">
       <div class="inv-member-card">
@@ -388,29 +390,10 @@
         <div class="mc-name">Stephanie L.</div>
         <div class="mc-role">Consultant · Founder</div>
         <div class="mc-no">№ 0001 &nbsp;·&nbsp; Since 2026</div>
-        <div class="mc-cities">London · New York · Toronto<br>Vancouver · Beijing</div>
         <div class="mc-foot">
           <p class="inv-meta inv-meta--champagne">Invicity Passport</p>
           <span class="inv-badge inv-badge--champagne">Active</span>
         </div>
-      </div>
-    </div>
-
-    <div class="hero-cities">
-      <p class="inv-meta">Chapters</p>
-      <div class="city-tags">
-        <span class="city-tag is-live">London</span>
-        <span class="city-tag">New York</span>
-        <span class="city-tag">San Francisco</span>
-        <span class="city-tag">Los Angeles</span>
-        <span class="city-tag">Chicago</span>
-        <span class="city-tag">Nashville</span>
-        <span class="city-tag">Boston</span>
-        <span class="city-tag">Vancouver</span>
-        <span class="city-tag">Shanghai</span>
-        <span class="city-tag">Beijing</span>
-        <span class="city-tag">Hong Kong</span>
-        <span class="city-tag">Stockholm</span>
       </div>
     </div>
   </div>
@@ -793,12 +776,16 @@
 
 <!-- Vetting -->
 <section class="sec on-dark">
-  <div class="wrap split" style="align-items:center;">
+  <div class="wrap split" style="align-items:start;">
     <div class="reveal">
       <p class="inv-meta">Why we're different</p>
       <h2 class="inv-display-md" style="margin:20px 0 24px;">We curate the room so you don't have to <em>filter the people.</em></h2>
       <p class="inv-body">Invicity isn't the network you join and forget. Every member is reviewed personally. We keep our gatherings intimate by design — the quality of the room is the point.</p>
       <p class="inv-body" style="margin-top:16px;">When you walk into an Invicity Night, everyone there has been vetted. That's what makes the connections real.</p>
+      <figure class="room-photo">
+        <div class="inv-photo"><img src="/photos/web/autumn-host.jpg" alt="The host welcoming guests in front of the paintings at the Autumn Social, shot on a disposable camera" loading="lazy"></div>
+        <figcaption class="inv-meta">Welcoming the room &nbsp;·&nbsp; Autumn Social, October 2026</figcaption>
+      </figure>
     </div>
     <div class="criteria reveal">
       <div class="criterion"><span class="n">01</span><div><h3>Application required</h3><p>Every prospective member completes a personal application — no auto-approvals.</p></div></div>
