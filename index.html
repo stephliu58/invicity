@@ -222,20 +222,18 @@
   .outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
   .outcome { border-top: 1px solid var(--hairline-dark); padding-top: 14px; font-size: 15px; line-height: 1.55; }
   .outcome .inv-meta { margin-bottom: 6px; }
-  .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .story-photos .inv-photo { aspect-ratio: 1; }
-  .story-photos .inv-photo:first-child { grid-column: span 2; aspect-ratio: 3 / 2; }
+  .story-photos .inv-photo { aspect-ratio: 4 / 5; }
   .pull { margin: clamp(56px, 8vw, 96px) auto 0; max-width: 720px; padding: clamp(32px, 5vw, 56px); text-align: center; border-radius: var(--radius); }
   .pull p:first-child { font-family: var(--font-display); font-style: italic; font-size: clamp(28px, 2.6vw, 40px); line-height: 1.25; max-width: 24ch; margin: 0 auto 14px; }
 
   /* ── Membership tiers ─────────────────────────────────── */
   .tiers-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; }
   .tiers-head .inv-body { max-width: 36ch; }
-  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
   .tier { border-radius: var(--radius); padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; }
   .tier--explorer { border: 1px solid var(--hairline-dark); }
   .tier--passport { background: var(--deep-forest); color: var(--ivory); border: 1px solid var(--champagne); }
-  .tier h3 { font-family: var(--font-display); font-weight: 400; font-size: 40px; line-height: 1.1; margin: 20px 0 4px; }
+  .tier h3 { font-family: var(--font-display); font-weight: 400; font-size: 32px; line-height: 1.1; margin: 20px 0 4px; }
   .tier .price { font-family: var(--font-display); font-size: 28px; color: var(--text-muted-dark); }
   .tier--passport .price { color: var(--text-muted-dark); }
   .tier .note { font-size: 14px; color: var(--text-muted-dark); margin-top: 8px; }
@@ -356,7 +354,7 @@
     <a href="#cohort">Founding cohort</a>
     <a href="#about">About</a>
     <a href="#events">Events</a>
-    <a href="#membership">Membership</a>
+    <a href="#membership">Join</a>
     <a href="#cities">Cities</a>
     <a href="#cohort" class="inv-btn inv-btn--primary"><span class="cta-long">Apply to the founding cohort</span><span class="cta-short">Apply</span></a>
   </nav>
@@ -690,12 +688,12 @@
         <div class="event-photos">
           <div class="inv-photo"><img src="/photos/web/wine-night-1.jpg" alt="Members at the first Invicity Wine Night" loading="lazy"></div>
           <div class="inv-photo"><img src="/photos/web/wine-night-7.jpg" alt="Around the table at Wine Night" loading="lazy"></div>
-          <div class="inv-photo"><img src="/photos/web/pub-trip-1.jpg" alt="Members at an Invicity pub night" loading="lazy"></div>
+          <div class="inv-photo"><img src="/photos/web/wine-night-group.jpg" alt="Six members together by the marble table at Invicity Wine Night" loading="lazy" style="object-position:center 60%;"></div>
         </div>
         <div class="event-meta">
           <p class="inv-meta">February 2026 &nbsp;·&nbsp; London</p>
-          <h3>Wine Night, and where it began</h3>
-          <p>The first Invicity Night — and the pub nights that followed.</p>
+          <h3>Wine Night, where it began</h3>
+          <p>The first Invicity Night, around one long marble table.</p>
         </div>
       </article>
     </div>
@@ -724,8 +722,6 @@
       </div>
       <div class="story-photos">
         <div class="inv-photo"><img src="/photos/web/wine-night-5.jpg" alt="Members around the table at Invicity Wine Night" loading="lazy"></div>
-        <div class="inv-photo"><img src="/photos/web/wine-night-3.jpg" alt="Invicity Wine Night" loading="lazy"></div>
-        <div class="inv-photo"><img src="/photos/web/holly-stella-1.jpg" alt="Invicity Wine Night" loading="lazy"></div>
       </div>
     </div>
     <div class="pull reveal inv-on-light">
@@ -739,36 +735,46 @@
 <section class="sec" id="membership">
   <div class="wrap">
     <div class="sec-head tiers-head reveal">
-      <h2 class="inv-display-md">Two ways to <em>belong</em></h2>
-      <p class="inv-body">We're opening doors carefully. Request an invitation — pricing will be announced ahead of launch.</p>
+      <h2 class="inv-display-md">Three ways <em>in</em></h2>
+      <p class="inv-body">London is open now. Everything else starts with the waitlist.</p>
     </div>
     <div class="tiers reveal">
-      <div class="tier tier--explorer">
-        <span class="inv-badge inv-badge--outline" style="align-self:flex-start;">Community</span>
-        <h3>Explorer</h3>
-        <div class="price">Coming soon</div>
+      <div class="tier tier--passport">
+        <span class="inv-badge inv-badge--champagne" style="align-self:flex-start;">Applications open</span>
+        <h3>London founding cohort</h3>
+        <div class="price">£150 for the quarter</div>
+        <p class="note">Kicks off the week of 18 January. Applications close 15 December.</p>
         <ul>
-          <li>Access to Invicity events</li>
-          <li>Community newsletter</li>
-          <li>One city chapter</li>
-          <li>Member directory (limited)</li>
+          <li>Welcome night and your London circle of 4 to 6</li>
+          <li>Thursday nights, every other week</li>
+          <li>Monthly experiences with your cohort</li>
+          <li>Free entry to Invicity socials</li>
         </ul>
-        <a href="#waitlist" class="inv-btn inv-btn--secondary">Request an invitation</a>
+        <a href="https://tally.so/r/Dq4EQb" target="_blank" rel="noopener" class="inv-btn inv-btn--primary">Apply to the founding cohort</a>
       </div>
-      <div class="tier tier--passport on-dark">
-        <span class="inv-badge inv-badge--champagne" style="align-self:flex-start;">Full access</span>
-        <h3>Passport</h3>
-        <div class="price">Coming soon</div>
-        <p class="note">Founding cohort members get founding member pricing.</p>
+      <div class="tier tier--explorer">
+        <span class="inv-badge inv-badge--outline" style="align-self:flex-start;">Coming soon</span>
+        <h3>Signature Experience</h3>
+        <div class="price">One introduction</div>
+        <p class="note">For when you land somewhere new.</p>
         <ul>
-          <li>All global city chapters</li>
-          <li>Priority event access and discounts</li>
-          <li><strong>One free member match every month</strong></li>
-          <li>Full member directory</li>
-          <li>Invicity city guides</li>
-          <li>Ambassador introductions</li>
+          <li>Hand-matched with a vetted local member</li>
+          <li>Someone in your world, with something worth sharing</li>
+          <li>Every match made personally, never by algorithm</li>
         </ul>
-        <a href="#waitlist" class="inv-btn inv-btn--primary">Request an invitation</a>
+        <a href="#signature" class="inv-btn inv-btn--secondary">See how it works</a>
+      </div>
+      <div class="tier tier--explorer">
+        <span class="inv-badge inv-badge--outline" style="align-self:flex-start;">Every other city</span>
+        <h3>The waitlist</h3>
+        <div class="price">Free</div>
+        <p class="note">For new cities and future cohorts.</p>
+        <ul>
+          <li>First access when your city opens</li>
+          <li>Early invitations to Invicity events</li>
+          <li>Reviewed personally</li>
+        </ul>
+        <a href="#waitlist" class="inv-btn inv-btn--secondary">Join the waitlist</a>
       </div>
     </div>
   </div>
@@ -840,7 +846,7 @@
       <p class="inv-meta">Invicity Signature Experience</p>
       <span class="inv-badge inv-badge--outline soon" style="margin-top:16px;">Coming soon</span>
       <h2 class="inv-display-md">Meet your person in every <em>city</em></h2>
-      <p class="inv-body">We personally match ambitious travelers with the right local Invicity member — someone in your industry, at your level, with something worth sharing. One introduction. Real connection. <em>A preview — launching for Passport members.</em></p>
+      <p class="inv-body">We personally match ambitious travelers with the right local Invicity member — someone in your industry, at your level, with something worth sharing. One introduction. Real connection. <em>A preview — launching soon.</em></p>
     </div>
 
     <div class="match on-dark reveal" id="matchingApp">
@@ -849,7 +855,7 @@
           <div class="match-title">Invicity Match</div>
           <p class="inv-meta" style="margin-top:4px;">Signature Experience</p>
         </div>
-        <p class="inv-meta">Passport members only</p>
+        <p class="inv-meta">Coming soon</p>
       </div>
       <div class="match-steps" aria-hidden="true">
         <span class="match-step active">Find a match</span><span class="rule"></span>
