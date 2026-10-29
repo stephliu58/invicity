@@ -68,7 +68,7 @@
     background: var(--deep-forest);
     border-bottom: 1px solid var(--hairline-dark);
   }
-  .site-header .inv-logo img { height: 32px; }
+  .site-header .inv-logo img { height: 40px; width: auto; }
   .site-nav { display: flex; align-items: center; gap: 4px; }
   .site-nav a:not(.inv-btn) {
     display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 12px;
@@ -82,7 +82,7 @@
   @media (max-width: 480px) { .cta-long { display: none; } .cta-short { display: inline; } .site-nav .inv-btn { margin-left: 0; padding: 0 18px; } }
 
   /* ── Hero ─────────────────────────────────────────────── */
-  .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; padding-top: 57px; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; padding-top: 69px; }
   .hero-left { background: var(--ivory); color: var(--deep-forest); padding: clamp(56px, 8vw, 112px) var(--pad-x); display: flex; flex-direction: column; justify-content: center; }
   .hero-left .inv-meta { margin-bottom: 32px; }
   .hero-left .inv-display { margin-bottom: 28px; }
@@ -128,24 +128,26 @@
   .city-tag.is-live::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); margin-right: 8px; vertical-align: 1px; }
 
   /* ── Founding cohort ──────────────────────────────────── */
-  .cohort-intro { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
+  .cohort-intro { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
   .cohort-intro .inv-display-md { margin: 20px 0 24px; }
   .cohort-ctas { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; margin-top: 36px; }
-  .cohort-card { justify-self: center; width: min(100%, 360px); }
-  .cohort-card .inv-member-card { gap: 0; padding: 36px 32px; }
-  .cc-seal { width: 56px; height: 56px; margin: 4px 0 28px; }
-  .cc-title { font-family: var(--font-display); font-size: 32px; line-height: 1.1; color: var(--ivory); }
-  .cc-rows { margin-top: 28px; border-top: 1px solid var(--hairline-dark); }
-  .cc-row { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--hairline-dark); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted-dark); }
-  .cc-row span:last-child { color: var(--ivory); text-align: right; }
+  .cohort-film { position: relative; padding-bottom: 18%; }
+  .cohort-film .film-main { aspect-ratio: 3 / 2; }
+  .cohort-film .film-inset { position: absolute; right: -4%; bottom: 0; width: 46%; aspect-ratio: 3 / 2; border: 6px solid var(--deep-forest); box-sizing: content-box; }
+  .cohort-film .inv-photo img { filter: none; }
+  .film-caption { position: absolute; left: 0; bottom: 0; max-width: 48%; }
 
-  .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 0; margin-top: clamp(56px, 8vw, 96px); border-top: 1px solid var(--hairline-dark); }
-  .offer { padding: 32px 28px 8px 0; }
-  .offer + .offer { padding-left: 28px; border-left: 1px solid var(--hairline-dark); }
-  .offer .inv-meta { margin-bottom: 18px; }
-  .offer h3 { font-family: var(--font-ui); font-weight: 500; font-size: 18px; line-height: 1.35; color: var(--ivory); margin-bottom: 10px; }
+  .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0 40px; margin-top: clamp(56px, 8vw, 96px); }
+  .offer { padding: 28px 0 32px; border-top: 1px solid var(--hairline-dark); }
+  .offer .inv-meta { margin-bottom: 14px; }
+  .offer h3 { font-family: var(--font-ui); font-weight: 500; font-size: 18px; line-height: 1.35; color: var(--ivory); margin-bottom: 8px; }
   .offer p { font-size: 15px; line-height: 1.65; color: var(--text-muted-dark); }
-  @media (max-width: 1040px) { .offer + .offer { border-left: 0; padding-left: 0; } .offer { border-bottom: 1px solid var(--hairline-dark); padding-bottom: 28px; } }
+  .offer-more { margin-top: 8px; font-size: 15px; color: var(--text-muted-dark); }
+  .proof { margin-top: clamp(48px, 7vw, 80px); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px 48px; align-items: baseline; padding: 28px 0; border-top: 1px solid var(--hairline-dark); border-bottom: 1px solid var(--hairline-dark); }
+  .proof-num { display: flex; gap: 40px; }
+  .proof-num div { font-family: var(--font-display); font-size: 48px; line-height: 1; color: var(--ivory); }
+  .proof-num .inv-meta { margin-top: 8px; }
+  @media (max-width: 760px) { .proof { grid-template-columns: minmax(0, 1fr); } }
 
   .cohort-who { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); margin-top: clamp(64px, 9vw, 112px); }
   .who-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; }
@@ -165,6 +167,8 @@
   .step p { font-size: 15px; line-height: 1.6; color: var(--text-muted-dark); }
   @media (max-width: 960px) { .step { padding: 0 0 28px; } .step-top .inv-route { display: none; } }
 
+  .price { display: flex; flex-direction: column; gap: 6px; }
+  .price .amt { font-family: var(--font-display); font-size: clamp(40px, 4vw, 56px); line-height: 1; color: var(--ivory); }
   .cohort-close { margin-top: clamp(64px, 9vw, 112px); padding-top: clamp(40px, 6vw, 64px); border-top: 1px solid var(--hairline-dark); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
 
   /* ── About ────────────────────────────────────────────── */
@@ -315,7 +319,10 @@
     .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
     .hero-right { padding-top: 88px; }
     .cohort-intro, .cohort-who, .split, .founder-top, .story { grid-template-columns: minmax(0, 1fr); }
-    .cohort-card { justify-self: start; }
+    .cohort-film { padding-bottom: 0; }
+    .cohort-film .film-inset { position: relative; right: auto; bottom: auto; display: block; width: 62%; margin: -14% 0 0 auto; }
+    .film-caption { position: static; max-width: none; margin-top: 14px; }
+    .hero-stat { display: none; }
     .travel-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 480px) {
@@ -335,7 +342,7 @@
 <!-- Header -->
 <header class="site-header">
   <a href="#top" class="inv-logo" aria-label="Invicity, home">
-    <img src="/brand/logo/invicity-lockup-sm-dark.svg" alt="Invicity" width="116" height="32">
+    <img src="/brand/logo/invicity-lockup-dark.svg" alt="Invicity" width="145" height="40">
   </a>
   <nav class="site-nav" aria-label="Main">
     <a href="#cohort">Founding cohort</a>
@@ -352,7 +359,7 @@
 <!-- Hero -->
 <section class="hero">
   <div class="hero-left inv-on-light">
-    <p class="inv-meta">By invitation &nbsp;·&nbsp; London founding cohort &nbsp;·&nbsp; January 2027</p>
+    <p class="inv-meta">By invitation &nbsp;·&nbsp; London founding cohort &nbsp;·&nbsp; Applications close 15 December</p>
     <h1 class="inv-display">A room in every city where you <em>already belong.</em></h1>
     <p class="inv-body">Invicity is a private membership for people who move between cities for work and stay for everything else. Curated events, intimate dinners, and one-to-one introductions — so you always have someone to call when you land somewhere new. Membership is reviewed, not purchased.</p>
     <div class="route" aria-hidden="true"><span class="route-dot route-dot--depart"></span><hr class="inv-route"><span class="route-dot route-dot--arrive"></span></div>
@@ -414,65 +421,77 @@
   <div class="wrap">
     <div class="cohort-intro">
       <div class="reveal">
-        <p class="inv-meta">London founding cohort &nbsp;·&nbsp; Starts January 2027</p>
-        <h2 class="inv-display-md">Fifty people. One city. <em>Your first circle in London.</em></h2>
-        <p class="inv-body">The London founding cohort is 50 people: newcomers from the US, Europe and Asia, and Londoners who want to meet them. For three months we help you settle into the city — introducing you to one another, and curating the evenings, dinners and experiences that turn a new city into yours.</p>
+        <p class="inv-meta">London founding cohort &nbsp;·&nbsp; Kicks off 18 January 2027</p>
+        <h2 class="inv-display-md">Fifty places. One city. <em>Your first circle in London.</em></h2>
+        <p class="inv-body">The Invicity founding cohort is up to 50 ambitious newcomers and Londoners: your London membership community from your first week. For one quarter we bring you together every other Thursday, take you out once a month, and match you with a small circle from day one.</p>
         <div class="cohort-ctas">
           <a href="https://tally.so/r/Dq4EQb" target="_blank" rel="noopener" class="inv-btn inv-btn--primary inv-btn--lg">Apply to the founding cohort</a>
-          <span class="inv-meta">Five minutes &nbsp;·&nbsp; Read personally</span>
+          <span class="inv-meta">Five minutes &nbsp;·&nbsp; Applications close 15 December</span>
         </div>
       </div>
-      <div class="cohort-card reveal" aria-hidden="true">
-        <div class="inv-member-card">
-          <p class="inv-meta inv-meta--champagne">Founding member</p>
-          <img class="cc-seal" src="/brand/logo/invicity-icon-champagne.svg" alt="">
-          <div class="cc-title">London founding cohort</div>
-          <div class="cc-rows">
-            <div class="cc-row"><span>City</span><span>LDN</span></div>
-            <div class="cc-row"><span>Places</span><span>№ 01 – 50</span></div>
-            <div class="cc-row"><span>Begins</span><span>January 2027</span></div>
-          </div>
-        </div>
-      </div>
+      <figure class="cohort-film reveal">
+        <div class="inv-photo film-main"><img src="/photos/web/cohort-film-1.jpg" alt="Five members smiling with drinks at the Invicity and London Arts Network Autumn Social, shot on a disposable camera" loading="lazy"></div>
+        <div class="inv-photo film-inset"><img src="/photos/web/cohort-film-2.jpg" alt="Four members together at the Autumn Social, shot on a disposable camera" loading="lazy"></div>
+        <figcaption class="inv-meta film-caption">Shot on disposable &nbsp;·&nbsp; Autumn Social with London Arts Network, October 2026</figcaption>
+      </figure>
     </div>
 
     <div class="offer-grid reveal">
       <div class="offer">
-        <p class="inv-meta">From week one</p>
-        <h3>A circle of six</h3>
-        <p>You're placed in a small circle from your first week, so you start the city with people, not a group chat.</p>
+        <p class="inv-meta">Week one</p>
+        <h3>Welcome night</h3>
+        <p>Meet your fellow founding members at the start of the quarter.</p>
       </div>
       <div class="offer">
-        <p class="inv-meta">Every week</p>
-        <h3>Thursday evenings</h3>
-        <p>A standing weekly evening for the cohort. Come when you can — there's always a table and a familiar face.</p>
+        <p class="inv-meta">From day one</p>
+        <h3>Your London circle</h3>
+        <p>A small group of four to six members you're matched with from day one.</p>
+      </div>
+      <div class="offer">
+        <p class="inv-meta">Every other Thursday</p>
+        <h3>Thursday nights</h3>
+        <p>Dinner or drinks with the cohort. You pay for your own food and drinks.</p>
       </div>
       <div class="offer">
         <p class="inv-meta">Every month</p>
-        <h3>A long-table dinner</h3>
-        <p>Once a month, the whole cohort around one table. The kind of dinner that turns acquaintances into friends.</p>
+        <h3>Monthly experiences</h3>
+        <p>Curated nights out with your cohort, from the West End to live music. Tickets are not included in the membership.</p>
       </div>
       <div class="offer">
         <p class="inv-meta">Throughout</p>
-        <h3>London, introduced</h3>
-        <p>Personal introductions to the right members, and curated experiences that help you find the London worth knowing.</p>
+        <h3>London insights and discounts</h3>
+        <p>Our guide to settling in, plus local discounts for members.</p>
       </div>
+      <div class="offer">
+        <p class="inv-meta">All year</p>
+        <h3>Invicity events</h3>
+        <p>Free entry to Invicity socials, member prices on premium events, and priority access to everything.</p>
+      </div>
+    </div>
+    <p class="offer-more reveal">Plus first access as Invicity grows to New York, Toronto, Hong Kong and beyond, and new perks unlocked throughout the quarter.</p>
+
+    <div class="proof reveal">
+      <div class="proof-num">
+        <div>6<p class="inv-meta">London events</p></div>
+        <div>200+<p class="inv-meta">Guests</p></div>
+      </div>
+      <p class="inv-body">Who's been in the room: people from McKinsey, Oliver Wyman, Google, VC, PE firms and top AI startups, founders of seven-figure companies, and alumni of Oxford, Cambridge, LSE, UCL, Harvard, Columbia, NYU and more.</p>
     </div>
 
     <div class="cohort-who">
       <div class="reveal">
         <p class="inv-meta">Who it's for</p>
-        <h2 class="inv-display-md" style="margin-top:20px;">Newcomers, and the Londoners <em>who want to meet them.</em></h2>
+        <h2 class="inv-display-md" style="margin-top:20px;">Ambitious people, mostly in their <em>20s and 30s.</em></h2>
       </div>
       <div class="who-cols reveal">
         <div class="who">
           <p class="inv-meta">Arriving</p>
           <h3>New to London</h3>
           <ul>
-            <li>On a secondment with your firm</li>
-            <li>Starting a new role</li>
-            <li>On an MBA or master's exchange</li>
-            <li>Studying in the city</li>
+            <li>Young professionals in consulting, finance, tech, law and beyond</li>
+            <li>In London on assignment or secondment</li>
+            <li>MBA and master's students on exchange</li>
+            <li>Founders, operators and creatives building something of their own</li>
           </ul>
         </div>
         <div class="who">
@@ -480,9 +499,8 @@
           <h3>Londoners</h3>
           <ul>
             <li>Two years or more in the city</li>
-            <li>Know the pub, the walk, the Sunday ritual</li>
-            <li>Want to meet people who are new here</li>
-            <li>Enjoy showing someone around</li>
+            <li>Want to meet interesting people from around the world</li>
+            <li>Happy to host a Thursday night or an experience</li>
           </ul>
         </div>
       </div>
@@ -491,32 +509,36 @@
     <ol class="steps reveal" aria-label="How to join">
       <li class="step">
         <div class="step-top"><span class="route-dot"></span><hr class="inv-route"></div>
-        <p class="inv-meta">01</p>
+        <p class="inv-meta">Five minutes</p>
         <h3>Apply</h3>
-        <p>A five-minute application about you and what you'd bring to the room.</p>
+        <p>Tell us about you and what you'd bring to the room. Nothing to pay today.</p>
       </li>
       <li class="step">
         <div class="step-top"><span class="route-dot"></span><hr class="inv-route"></div>
-        <p class="inv-meta">02</p>
+        <p class="inv-meta">Within a week</p>
         <h3>Read personally</h3>
-        <p>Every application is read by a person, not filtered by a form.</p>
+        <p>We review applications on a rolling basis and reply to every one.</p>
       </li>
       <li class="step">
         <div class="step-top"><span class="route-dot"></span><hr class="inv-route"></div>
-        <p class="inv-meta">03</p>
+        <p class="inv-meta">By 20 December</p>
         <h3>A ten-minute call</h3>
-        <p>If it's a fit, we'll be in touch within a few days to book a short call.</p>
+        <p>If it's a fit, we'll invite you to a short call. All places are confirmed by 20 December.</p>
       </li>
       <li class="step">
         <div class="step-top"><span class="route-dot"></span><hr class="inv-route"></div>
-        <p class="inv-meta">04</p>
-        <h3>Welcome, January</h3>
-        <p>Meet your circle and the rest of the founding cohort.</p>
+        <p class="inv-meta">Week of 18 January</p>
+        <h3>Kickoff</h3>
+        <p>Welcome night, your circle, and the rest of the founding cohort.</p>
       </li>
     </ol>
 
     <div class="cohort-close reveal">
-      <p class="inv-display-sm">Fifty places. Applications are open.</p>
+      <div class="price">
+        <p class="inv-meta inv-meta--champagne">Founding membership</p>
+        <span class="amt">£150 <span class="inv-meta" style="display:inline;">for the quarter</span></span>
+        <p class="inv-body" style="font-size:15px;">If you're accepted, a £30 deposit holds your place and the remaining £120 is due before kickoff. Invicity event tickets are included; experience tickets and food and drinks are paid separately.</p>
+      </div>
       <a href="https://tally.so/r/Dq4EQb" target="_blank" rel="noopener" class="inv-btn inv-btn--primary inv-btn--lg">Apply to the founding cohort</a>
     </div>
   </div>
@@ -925,8 +947,8 @@
       </div>
       <div class="u-card u-card--dark on-dark">
         <p class="inv-meta">Founding cohort</p>
-        <h3>Starts January 2027</h3>
-        <p>Fifty places in London. Applications are read personally.</p>
+        <h3>Kicks off 18 January</h3>
+        <p>Up to 50 places in London. Applications close 15 December.</p>
         <a href="https://tally.so/r/Dq4EQb" target="_blank" rel="noopener" class="link-arrow">Apply <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
       </div>
     </div>
