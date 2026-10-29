@@ -37,8 +37,9 @@
   .muted-dark  { color: var(--text-muted-dark); }
 
   /* Light sections: links take ink, not sage (sage stays on dark grounds) */
-  .inv-on-light a:not(.inv-btn) { color: var(--deep-forest); text-decoration-color: var(--hairline-light); }
-  .inv-on-light a:not(.inv-btn):hover { text-decoration-color: currentColor; }
+  .inv-on-light a:not(.inv-btn):not(.link-arrow) { color: var(--deep-forest); text-decoration: underline; text-underline-offset: 3px; }
+  .inv-on-light .link-arrow { color: var(--ink-muted-light, var(--text-muted-light)); }
+  .inv-on-light a:not(.inv-btn):hover { color: var(--forest); }
   .inv-on-light :focus-visible { outline-color: var(--deep-forest); }
   /* Dark objects inside light sections switch back to the dark-ground rules */
   .inv-on-light .on-dark { color: var(--ivory); }
@@ -68,11 +69,11 @@
     background: var(--deep-forest);
     border-bottom: 1px solid var(--hairline-dark);
   }
-  .site-header .inv-logo img { height: 40px; width: auto; }
+  .site-header .inv-logo img { height: 26px; width: auto; }
   .site-nav { display: flex; align-items: center; gap: 4px; }
   .site-nav a:not(.inv-btn) {
     display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 12px;
-    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--text-muted-dark); text-decoration: none;
   }
   .site-nav a:not(.inv-btn):hover { color: var(--ivory); }
@@ -83,7 +84,7 @@
 
   /* ── Hero ─────────────────────────────────────────────── */
   .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; padding: calc(69px + clamp(16px, 2vw, 28px)) clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px); gap: clamp(16px, 2vw, 28px); }
-  .hero-left { border-radius: 3px; background: var(--ivory); color: var(--deep-forest); padding: clamp(56px, 8vw, 112px) var(--pad-x); display: flex; flex-direction: column; justify-content: center; }
+  .hero-left { border-radius: var(--radius); background: var(--ivory); color: var(--deep-forest); padding: clamp(56px, 8vw, 112px) var(--pad-x); display: flex; flex-direction: column; justify-content: center; }
   .hero-left .inv-meta { margin-bottom: 32px; }
   .hero-left .inv-display { margin-bottom: 28px; }
   .hero-left .inv-body { max-width: 46ch; }
@@ -95,7 +96,7 @@
   .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
   .link-arrow {
     display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap);
-    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--text-muted-light); text-decoration: none;
   }
   .link-arrow:hover { color: var(--deep-forest); text-decoration: none; }
@@ -116,14 +117,14 @@
   .mc-top img { width: 28px; height: 28px; }
   .mc-name { font-family: var(--font-display); font-size: 28px; line-height: 1.1; color: var(--ivory); }
   .mc-role { font-size: 14px; color: var(--text-muted-dark); margin-top: 6px; }
-  .mc-no { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--champagne); margin: 24px 0 20px; }
+  .mc-no { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--champagne); margin: 24px 0 20px; }
   .mc-cities { font-size: 14px; color: var(--text-muted-dark); line-height: 1.55; padding-bottom: 20px; border-bottom: 1px solid var(--hairline-dark); }
   .mc-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; }
 
   .hero-cities { position: relative; width: min(100%, 420px); }
   .hero-cities .inv-meta { margin-bottom: 14px; }
   .city-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .city-tag { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--text-muted-dark); border: 1px solid var(--hairline-dark); border-radius: var(--radius); padding: 6px 12px; }
+  .city-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted-dark); border: 1px solid var(--hairline-dark); border-radius: var(--radius); padding: 6px 12px; }
   .city-tag.is-live { color: var(--ivory); border-color: var(--control-border-dark); }
   .city-tag.is-live::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); margin-right: 8px; vertical-align: 1px; }
 
@@ -141,7 +142,7 @@
   .offer { padding: 28px 0 32px; border-top: 1px solid var(--hairline-dark); }
   .offer .inv-meta { margin-bottom: 14px; }
   .offer h3 { font-family: var(--font-ui); font-weight: 500; font-size: 18px; line-height: 1.35; color: var(--ivory); margin-bottom: 8px; }
-  .offer p { font-size: 15px; line-height: 1.65; color: var(--text-muted-dark); }
+  .offer p:not(.inv-meta) { font-size: 15px; line-height: 1.65; color: var(--text-muted-dark); }
   .offer-more { margin-top: 8px; font-size: 15px; color: var(--text-muted-dark); }
   .proof { margin-top: clamp(48px, 7vw, 80px); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px 48px; align-items: baseline; padding: 28px 0; border-top: 1px solid var(--hairline-dark); border-bottom: 1px solid var(--hairline-dark); }
   .proof-num { display: flex; gap: 40px; }
@@ -151,7 +152,7 @@
 
   .cohort-who { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); margin-top: clamp(64px, 9vw, 112px); }
   .who-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; }
-  .who { background: var(--forest); border-radius: 3px; padding: 28px; }
+  .who { background: var(--forest); border: 1px solid var(--hairline-dark); border-radius: var(--radius); padding: 28px; }
   .who h3 { font-family: var(--font-display); font-size: 28px; font-weight: 400; line-height: 1.2; color: var(--ivory); margin: 14px 0 14px; }
   .who li { font-size: 15px; color: var(--text-muted-dark); padding: 8px 0; border-top: 1px solid var(--hairline-dark); }
 
@@ -164,7 +165,7 @@
   .step:last-child .step-top .inv-route { display: none; }
   .step .inv-meta { margin-bottom: 8px; }
   .step h3 { font-family: var(--font-ui); font-weight: 500; font-size: 17px; color: var(--ivory); margin-bottom: 6px; }
-  .step p { font-size: 15px; line-height: 1.6; color: var(--text-muted-dark); }
+  .step p:not(.inv-meta) { font-size: 15px; line-height: 1.6; color: var(--text-muted-dark); }
   @media (max-width: 960px) { .step { padding: 0 0 28px; } .step-top .inv-route { display: none; } }
 
   .price { display: flex; flex-direction: column; gap: 6px; }
@@ -191,7 +192,7 @@
   .travel .inv-meta { margin-bottom: 16px; }
   .travel-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .travel-item { position: relative; aspect-ratio: 1; }
-  .travel-item figcaption { position: absolute; left: 12px; bottom: 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ivory); background: var(--deep-forest); padding: 4px 8px; border-radius: var(--radius); }
+  .travel-item figcaption { position: absolute; left: 12px; bottom: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ivory); background: var(--deep-forest); padding: 4px 8px; border-radius: var(--radius); }
 
   /* ── Pillars ──────────────────────────────────────────── */
   .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 0; border-top: 1px solid var(--hairline-dark); }
@@ -210,7 +211,7 @@
   .event-photos.single .inv-photo:first-child { aspect-ratio: 3 / 2; }
   .event-meta { margin-top: 20px; }
   .event-meta h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.2; margin: 8px 0 6px; }
-  .event-meta p { font-size: 15px; line-height: 1.6; color: var(--text-muted-dark); }
+  .event-meta p:not(.inv-meta) { font-size: 15px; line-height: 1.6; color: var(--text-muted-dark); }
   .follow { margin-top: 48px; font-size: 15px; color: var(--text-muted-dark); }
 
   /* ── Stories ──────────────────────────────────────────── */
@@ -223,14 +224,14 @@
   .story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .story-photos .inv-photo { aspect-ratio: 1; }
   .story-photos .inv-photo:first-child { grid-column: span 2; aspect-ratio: 3 / 2; }
-  .pull { margin: clamp(56px, 8vw, 96px) auto 0; max-width: 720px; padding: clamp(32px, 5vw, 56px); text-align: center; border-radius: 3px; }
+  .pull { margin: clamp(56px, 8vw, 96px) auto 0; max-width: 720px; padding: clamp(32px, 5vw, 56px); text-align: center; border-radius: var(--radius); }
   .pull p:first-child { font-family: var(--font-display); font-style: italic; font-size: clamp(28px, 2.6vw, 40px); line-height: 1.25; max-width: 24ch; margin: 0 auto 14px; }
 
   /* ── Membership tiers ─────────────────────────────────── */
   .tiers-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; }
   .tiers-head .inv-body { max-width: 36ch; }
   .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
-  .tier { border-radius: 3px; padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; }
+  .tier { border-radius: var(--radius); padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; }
   .tier--explorer { border: 1px solid var(--hairline-dark); }
   .tier--passport { background: var(--deep-forest); color: var(--ivory); border: 1px solid var(--champagne); }
   .tier h3 { font-family: var(--font-display); font-weight: 400; font-size: 40px; line-height: 1.1; margin: 20px 0 4px; }
@@ -245,10 +246,10 @@
 
   /* ── Vetting ──────────────────────────────────────────── */
   .criteria { display: flex; flex-direction: column; gap: 8px; }
-  .criterion { display: flex; gap: 20px; align-items: flex-start; background: var(--forest); border-radius: 3px; padding: 22px 26px; }
+  .criterion { display: flex; gap: 20px; align-items: flex-start; background: var(--forest); border: 1px solid var(--hairline-dark); border-radius: var(--radius); padding: 22px 26px; }
   .criterion .n { font-family: var(--font-display); font-size: 32px; line-height: 1; color: var(--text-muted-dark); min-width: 40px; }
   .criterion h3 { font-family: var(--font-ui); font-weight: 500; font-size: 16px; color: var(--ivory); margin-bottom: 4px; }
-  .criterion p { font-size: 14px; line-height: 1.55; color: var(--steel-text-dark); }
+  .criterion p:not(.inv-meta) { font-size: 14px; line-height: 1.55; color: var(--steel-text-dark); }
 
   /* ── Cities ───────────────────────────────────────────── */
   .cities-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; }
@@ -256,20 +257,19 @@
   .region { margin-top: 40px; }
   .region .inv-meta { margin-bottom: 12px; }
   .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 8px; }
-  .city { position: relative; background: var(--forest); border-radius: 3px; padding: 28px 24px; }
+  .city { position: relative; background: var(--forest); border: 1px solid var(--hairline-dark); border-radius: var(--radius); padding: 28px 24px; }
   .city h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.1; color: var(--ivory); }
-  .city p { font-size: 14px; color: var(--steel-text-dark); margin-top: 4px; }
-  .city .inv-badge { position: absolute; top: 14px; right: 14px; padding: 3px 10px; background: transparent; border: 1px solid var(--control-border-dark); color: var(--text-muted-dark); }
-  .city.is-live .inv-badge { color: var(--ivory); border-color: var(--sage); }
+  .city p:not(.inv-meta) { font-size: 14px; color: var(--steel-text-dark); margin-top: 4px; }
+  .city .inv-badge { position: absolute; top: 14px; right: 14px; padding: 3px 10px; }
 
   /* ── Signature (demo) ─────────────────────────────────── */
   .soon { display: inline-flex; margin-bottom: 20px; }
-  .match { max-width: 960px; margin: 0 auto; background: var(--forest); color: var(--ivory); border-radius: 3px; overflow: hidden; }
+  .match { max-width: 960px; margin: 0 auto; background: var(--forest); color: var(--ivory); border-radius: var(--radius); overflow: hidden; }
   .match-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 24px clamp(20px, 4vw, 40px); border-bottom: 1px solid var(--hairline-dark); }
   .match-title { font-family: var(--font-ui); font-weight: 500; font-size: 18px; }
   .match-steps { display: flex; align-items: center; gap: 8px; padding: 24px clamp(20px, 4vw, 40px) 0; }
   .match-steps .rule { flex: 1; height: 1px; background: var(--hairline-dark); }
-  .match-step { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-text-dark); white-space: nowrap; }
+  .match-step { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel-text-dark); white-space: nowrap; }
   .match-step.active { color: var(--ivory); }
   @media (max-width: 560px) { .match-steps { flex-wrap: wrap; gap: 6px 14px; } .match-steps .rule { display: none; } }
   .match-panel { padding: 28px clamp(20px, 4vw, 40px) 40px; }
@@ -278,7 +278,7 @@
   .field label { display: block; margin-bottom: 8px; }
   select.inv-input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--text-muted-dark) 50%), linear-gradient(135deg, var(--text-muted-dark) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
   select.inv-input option { color: var(--deep-forest); }
-  .profile { background: var(--deep-forest); border-radius: 3px; padding: clamp(20px, 3vw, 32px); margin: 20px 0 24px; }
+  .profile { background: var(--deep-forest); border-radius: var(--radius); padding: clamp(20px, 3vw, 32px); margin: 20px 0 24px; }
   .profile-head { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
   .avatar { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--control-border-dark); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 28px; flex-shrink: 0; }
   .profile-name { font-family: var(--font-display); font-size: 28px; line-height: 1.1; }
@@ -289,17 +289,17 @@
   .btn-row .inv-btn, .match .inv-btn--block { width: 100%; }
 
   /* ── Upcoming ─────────────────────────────────────────── */
-  .luma { border: 1px solid var(--hairline-dark); border-radius: 3px; overflow: hidden; background: var(--forest); }
+  .luma { border: 1px solid var(--hairline-dark); border-radius: var(--radius); overflow: hidden; background: var(--forest); }
   .luma iframe { display: block; width: 100%; border: 0; }
   .upcoming-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; margin-top: 24px; }
-  .u-card { border: 1px solid var(--hairline-dark); border-radius: 3px; padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .u-card { border: 1px solid var(--hairline-dark); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 10px; }
   .u-card--ivory { background: var(--ivory); color: var(--deep-forest); border-color: var(--ivory); }
   .u-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.2; }
-  .u-card p { font-size: 15px; line-height: 1.6; color: var(--text-muted-dark); flex: 1; }
+  .u-card p:not(.inv-meta) { font-size: 15px; line-height: 1.6; color: var(--text-muted-dark); flex: 1; }
   .u-card--ivory p { color: var(--text-muted-light); }
 
   /* ── Waitlist ─────────────────────────────────────────── */
-  .waitlist-box { background: var(--forest); border-radius: 3px; padding: clamp(28px, 4vw, 48px); }
+  .waitlist-box { background: var(--forest); border: 1px solid var(--hairline-dark); border-radius: var(--radius); padding: clamp(28px, 4vw, 48px); }
   .waitlist-box .inv-display-sm { margin: 14px 0 12px; color: var(--ivory); }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
 
@@ -342,7 +342,7 @@
 <!-- Header -->
 <header class="site-header">
   <a href="#top" class="inv-logo" aria-label="Invicity, home">
-    <img src="/brand/logo/invicity-lockup-dark.svg" alt="Invicity" width="145" height="40">
+    <img src="/brand/logo/invicity-lockup-dark.svg" alt="Invicity" width="94" height="26">
   </a>
   <nav class="site-nav" aria-label="Main">
     <a href="#cohort">Founding cohort</a>
@@ -761,7 +761,7 @@
     </div>
     <div class="tiers reveal">
       <div class="tier tier--explorer">
-        <span class="inv-badge" style="align-self:flex-start;background:transparent;border:1px solid var(--control-border-dark);color:var(--ivory);">Community</span>
+        <span class="inv-badge inv-badge--outline" style="align-self:flex-start;">Community</span>
         <h3>Explorer</h3>
         <div class="price">Coming soon</div>
         <ul>
@@ -825,22 +825,22 @@
     <div class="region reveal">
       <p class="inv-meta">United States</p>
       <div class="city-grid">
-        <div class="city"><span class="inv-badge">Soon</span><h3>New York</h3><p>NY</p></div>
-        <div class="city"><span class="inv-badge">Soon</span><h3>San Francisco</h3><p>CA</p></div>
-        <div class="city"><span class="inv-badge">Soon</span><h3>Los Angeles</h3><p>CA</p></div>
-        <div class="city"><span class="inv-badge">Soon</span><h3>Chicago</h3><p>IL</p></div>
-        <div class="city"><span class="inv-badge">Soon</span><h3>Nashville</h3><p>TN</p></div>
-        <div class="city"><span class="inv-badge">Soon</span><h3>Boston</h3><p>MA</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>New York</h3><p>NY</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>San Francisco</h3><p>CA</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>Los Angeles</h3><p>CA</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>Chicago</h3><p>IL</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>Nashville</h3><p>TN</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>Boston</h3><p>MA</p></div>
       </div>
     </div>
     <div class="region reveal">
       <p class="inv-meta">Canada &nbsp;·&nbsp; China &nbsp;·&nbsp; Scandinavia</p>
       <div class="city-grid">
-        <div class="city"><span class="inv-badge">Soon</span><h3>Vancouver</h3><p>BC</p></div>
-        <div class="city"><span class="inv-badge">Soon</span><h3>Shanghai</h3><p>China</p></div>
-        <div class="city"><span class="inv-badge">Soon</span><h3>Beijing</h3><p>China</p></div>
-        <div class="city"><span class="inv-badge">Soon</span><h3>Hong Kong</h3><p>SAR</p></div>
-        <div class="city"><span class="inv-badge">Soon</span><h3>Stockholm</h3><p>Sweden</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>Vancouver</h3><p>BC</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>Shanghai</h3><p>China</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>Beijing</h3><p>China</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>Hong Kong</h3><p>SAR</p></div>
+        <div class="city"><span class="inv-badge inv-badge--outline">Soon</span><h3>Stockholm</h3><p>Sweden</p></div>
       </div>
     </div>
   </div>
@@ -851,7 +851,7 @@
   <div class="wrap">
     <div class="sec-head center reveal">
       <p class="inv-meta">Invicity Signature Experience</p>
-      <span class="inv-badge soon" style="margin-top:16px;">Coming soon</span>
+      <span class="inv-badge inv-badge--outline soon" style="margin-top:16px;">Coming soon</span>
       <h2 class="inv-display-md">Meet your person in every <em>city</em></h2>
       <p class="inv-body">We personally match ambitious travelers with the right local Invicity member — someone in your industry, at your level, with something worth sharing. One introduction. Real connection. <em>A preview — launching for Passport members.</em></p>
     </div>
@@ -963,9 +963,9 @@
       <h2 class="inv-display-md" style="margin:20px 0 24px;">Not in London this winter? <em>Join the waitlist.</em></h2>
       <p class="inv-body">We're opening doors city by city, carefully. If you're elsewhere, or the January cohort isn't the right moment, tell us who you are and where you're headed — we'll be in touch when your chapter or the next cohort opens.</p>
       <div class="tags">
-        <span class="inv-badge">Reviewed personally</span>
-        <span class="inv-badge">Limited places per city</span>
-        <span class="inv-badge">First access</span>
+        <span class="inv-badge inv-badge--outline">Reviewed personally</span>
+        <span class="inv-badge inv-badge--outline">Limited places per city</span>
+        <span class="inv-badge inv-badge--outline">First access</span>
       </div>
     </div>
     <div class="waitlist-box reveal">
