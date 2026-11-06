@@ -123,15 +123,6 @@
   /* "Members" stays in the header on phones, where the other links fold away */
   .site-nav a.nav-members { display: inline-flex; }
 
-  /* Members' app: how to keep it on your home screen */
-  .app-steps { display: flex; flex-direction: column; gap: 16px; }
-  .app-device { border: 1px solid var(--hairline-dark); border-radius: var(--radius); padding: 24px 26px; }
-  .app-device ol { margin-top: 16px; display: flex; flex-direction: column; gap: 14px; }
-  .app-device li { display: flex; gap: 16px; align-items: flex-start; }
-  .app-device .n { font-family: var(--font-display); font-size: 24px; line-height: 1; color: var(--text-muted-dark); min-width: 32px; }
-  .app-device p { font-size: 15px; line-height: 1.55; }
-  .app-device strong { font-weight: 500; }
-  .app-device svg { display: inline; width: 16px; height: 16px; vertical-align: -3px; }
 
   /* ── Hero ─────────────────────────────────────────────── */
   .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; padding: calc(69px + clamp(16px, 2vw, 28px)) clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px); gap: clamp(16px, 2vw, 28px); }
@@ -856,31 +847,14 @@
 
 <!-- Members' app -->
 <section class="sec" id="app">
-  <div class="wrap split" style="align-items:start;">
-    <div class="reveal">
+  <div class="wrap split reveal" style="align-items:end;">
+    <div>
       <p class="inv-meta">For members</p>
-      <h2 class="inv-display-md" style="margin:20px 0 24px;">The members' app, <em>on your home screen.</em></h2>
-      <p class="inv-body">Your circle, events and tickets, the member directory and Signature introductions, all at app.invicity.co. Sign in with your email: we send you a code, so there's no password to remember.</p>
-      <p class="inv-body" style="margin-top:16px;">There's nothing to download and no App Store. Adding it to your home screen saves a shortcut to our site that opens full screen, like an app. It can't see your contacts, photos or location, and you can remove it like any other icon.</p>
-      <a href="https://app.invicity.co" class="inv-btn inv-btn--primary" style="margin-top:32px;">Open the members' app</a>
+      <h2 class="inv-display-md" style="margin-top:20px;">The members' <em>app.</em></h2>
     </div>
-    <div class="app-steps reveal">
-      <div class="app-device">
-        <p class="inv-meta">iPhone · Safari</p>
-        <ol>
-          <li><span class="n">01</span><p>Open <strong>app.invicity.co</strong> and sign in.</p></li>
-          <li><span class="n">02</span><p>Tap Share <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v13"/><path d="m16 6-4-4-4 4"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/></svg> at the bottom of the screen. Don't see it? Tap ••• first.</p></li>
-          <li><span class="n">03</span><p>Scroll down, tap <strong>Add to Home Screen</strong>, then <strong>Add</strong>.</p></li>
-        </ol>
-      </div>
-      <div class="app-device">
-        <p class="inv-meta">Android · Chrome</p>
-        <ol>
-          <li><span class="n">01</span><p>Open <strong>app.invicity.co</strong> and sign in.</p></li>
-          <li><span class="n">02</span><p>Tap the menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg> at the top right.</p></li>
-          <li><span class="n">03</span><p>Tap <strong>Add to home screen</strong> or <strong>Install app</strong>, then <strong>Install</strong>.</p></li>
-        </ol>
-      </div>
+    <div>
+      <p class="inv-body">Your circle, events, tickets and introductions, all at app.invicity.co. Nothing to download: sign in with your email, and it shows you how to keep it on your home screen.</p>
+      <a href="https://app.invicity.co" class="inv-btn inv-btn--primary" style="margin-top:28px;">Open the members' app</a>
     </div>
   </div>
 </section>
@@ -1073,7 +1047,6 @@
           <li><a href="#membership">Membership</a></li>
           <li><a href="#waitlist">Waitlist</a></li>
           <li><a href="https://app.invicity.co">Members' app</a></li>
-          <li><a href="#app">Add it to your home screen</a></li>
         </ul>
       </div>
       <div class="footer-col">
