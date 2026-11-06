@@ -120,6 +120,9 @@
   .cta-short { display: none; }
   @media (max-width: 960px) { .site-nav a:not(.inv-btn) { display: none; } }
   @media (max-width: 480px) { .cta-long { display: none; } .cta-short { display: inline; } .site-nav .inv-btn { margin-left: 0; padding: 0 18px; } }
+  /* "Members" stays in the header on phones, where the other links fold away */
+  .site-nav a.nav-members { display: inline-flex; }
+
 
   /* ── Hero ─────────────────────────────────────────────── */
   .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; padding: calc(69px + clamp(16px, 2vw, 28px)) clamp(16px, 2vw, 28px) clamp(16px, 2vw, 28px); gap: clamp(16px, 2vw, 28px); }
@@ -395,6 +398,7 @@
     <a href="#events">Events</a>
     <a href="#membership">Join</a>
     <a href="#cities">Cities</a>
+    <a href="https://app.invicity.co" class="nav-members">Members</a>
     <a href="#cohort" class="inv-btn inv-btn--primary"><span class="cta-long">Apply to the founding cohort</span><span class="cta-short">Apply</span></a>
   </nav>
 </header>
@@ -841,6 +845,20 @@
   </div>
 </section>
 
+<!-- Members' app -->
+<section class="sec" id="app">
+  <div class="wrap split reveal" style="align-items:end;">
+    <div>
+      <p class="inv-meta">For members</p>
+      <h2 class="inv-display-md" style="margin-top:20px;">The members' <em>app.</em></h2>
+    </div>
+    <div>
+      <p class="inv-body">Your circle, events, tickets and introductions, all at app.invicity.co. Nothing to download: sign in with your email, and it shows you how to keep it on your home screen.</p>
+      <a href="https://app.invicity.co" class="inv-btn inv-btn--primary" style="margin-top:28px;">Open the members' app</a>
+    </div>
+  </div>
+</section>
+
 <!-- Cities -->
 <section class="sec on-dark" id="cities">
   <div class="wrap">
@@ -1028,6 +1046,7 @@
           <li><a href="#cities">Cities</a></li>
           <li><a href="#membership">Membership</a></li>
           <li><a href="#waitlist">Waitlist</a></li>
+          <li><a href="https://app.invicity.co">Members' app</a></li>
         </ul>
       </div>
       <div class="footer-col">
