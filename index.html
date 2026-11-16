@@ -966,6 +966,13 @@
       </div>
     </div>
     <p class="inv-body center reveal" style="margin:28px auto 0;">Every match is reviewed and made personally by the Invicity team. No algorithm. Just good judgment.</p>
+
+    <div class="center reveal" id="host" style="margin:88px auto 0;max-width:62ch;">
+      <p class="inv-meta">Become a host</p>
+      <h3 class="inv-display-sm" style="margin:16px 0 18px;">Be the person someone is glad they met in your city.</h3>
+      <p class="inv-body">When an Invicity member lands in your city, we introduce them to one local we'd vouch for. One coffee or drink, about once a month at most. You choose who you meet and can say no to any introduction. And when you travel, you can be on the other side of it.</p>
+      <a href="https://tally.so/r/A7Lbbl" target="_blank" rel="noopener" class="inv-btn inv-btn--primary inv-btn--lg" style="margin-top:28px;">Apply to host</a>
+    </div>
   </div>
 </section>
 
@@ -1075,6 +1082,19 @@
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     els.forEach(function (e) { io.observe(e); });
+  })();
+
+  // Carry ?source= (or utm_source) from the page URL into the form links, so each
+  // application records where it came from. The host form's field is called "ref".
+  (function () {
+    var q = new URLSearchParams(window.location.search);
+    var src = q.get('source') || q.get('utm_source') || q.get('ref');
+    if (!src) return;
+    document.querySelectorAll('a[href*="tally.so/r/"]').forEach(function (a) {
+      var u = new URL(a.href);
+      var key = u.pathname.indexOf('A7Lbbl') > -1 ? 'ref' : 'source';
+      if (!u.searchParams.has(key)) { u.searchParams.set(key, src); a.href = u.toString(); }
+    });
   })();
 
   // Signature preview
